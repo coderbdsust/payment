@@ -1,0 +1,57 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+  <title>
+    ICONS
+  </title>
+  <th:block th:replace="common/header :: header"></th:block>
+</head>
+
+<body class="">
+  <div class="wrapper ">
+    <div class="sidebar" data-color="purple" data-background-color="white" data-image="../assets/img/sidebar-1.jpg">
+      <th:block th:replace="common/sidebar :: sidebar"></th:block>
+    </div>
+    <div class="main-panel">
+      <th:block th:replace="common/navbar :: navbar"></th:block>
+      <div class="content">
+        <div class="container-fluid">
+          <div class="container-fluid">
+            <div class="card card-plain">
+              <div class="card-header card-header-primary">
+                <h4 class="card-title">Material Design Icons</h4>
+                <p class="card-category">Handcrafted by our friends from
+                  <a target="_blank" href="https://design.google.com/icons/">Google</a>
+                </p>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="card-body">
+                    <div class="iframe-container d-none d-lg-block">
+                      <iframe src="https://design.google.com/icons/">
+                        <p>Your browser does not support iframes.</p>
+                      </iframe>
+                    </div>
+                    <div class="col-md-12 d-none d-sm-block d-md-block d-lg-none d-block d-sm-none text-center ml-auto mr-auto">
+                      <h5>The icons are visible on Desktop mode inside an iframe. Since the iframe is not working on Mobile and Tablets please visit the icons on their original page on Google. Check the
+                        <a href="https://design.google.com/icons/" target="_blank">Material Icons</a>
+                      </h5>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <th:block th:replace="common/footer :: footer"></th:block>
+    </div>
+  </div>
+  <th:block th:replace="common/footer-plugins :: footer-plugins"></th:block>
+  <th:block th:replace="common/footer-lib :: footerlib"></th:block>
+</body>
+
+</html>

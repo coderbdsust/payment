@@ -1,0 +1,50 @@
+plugins {
+	id 'org.springframework.boot' version '2.1.4.RELEASE'
+	id 'java'
+}
+
+apply plugin: 'io.spring.dependency-management'
+
+group = 'com.dbbl'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+configurations.all {
+	// Check for updates every build
+	resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
+}
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+	developmentOnly
+	runtimeClasspath {
+		extendsFrom developmentOnly
+	}
+}
+
+repositories {
+	mavenCentral()
+	flatDir {
+		dirs 'libs'
+	}
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+//	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	developmentOnly("org.springframework.boot:spring-boot-devtools")
+//	implementation 'org.liquibase:liquibase-core'
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+//	testImplementation 'org.springframework.security:spring-security-test'
+	compile group: 'com.oracle', name: 'ojdbc7', version: '12.1.0.2'
+
+}
+
+
+//		./gradlew build --refresh-dependencies
