@@ -1,0 +1,134 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+    <title>
+        Tables
+    </title>
+    <th:block th:replace="common/header :: header"></th:block>
+</head>
+
+<body class="">
+<div class="wrapper ">
+    <div class="sidebar" data-color="purple" data-background-color="white" data-image="../assets/img/sidebar-1.jpg">
+        <th:block th:replace="common/sidebar :: sidebar"></th:block>
+    </div>
+    <div class="main-panel">
+        <th:block th:replace="common/navbar :: navbar"></th:block>
+        <div class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header card-header-primary">
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <h4 class="card-title ">Account Transanction History</h4>
+                                        <p class="card-category">all transanction by this account</p>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <form class="navbar-form">
+                                            <div class="input-group no-border">
+                                                <input type="text" value="" class="form-control"
+                                                       placeholder="Search...">
+                                                <button type="submit" class="btn btn-white btn-round btn-just-icon">
+                                                    <i class="material-icons">search</i>
+                                                    <div class="ripple-container"></div>
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead class=" text-primary">
+                                        <th>
+                                            ID
+                                        </th>
+                                        <th>
+                                            Customer ID
+                                        </th>
+                                        <th>
+                                            Account Number
+                                        </th>
+                                        <th>
+                                            From Account
+                                        </th>
+                                        <th>
+                                            To Account
+                                        </th>
+                                        <th>
+                                            Credit Amount
+                                        </th>
+                                        <th>
+                                            Debit Amount
+                                        </th>
+                                        <th>
+                                            Transanction Type
+                                        </th>
+                                        <th>
+                                            Transanction Date
+                                        </th>
+                                        <th>
+                                            Reference
+                                        </th>
+                                        <th>
+                                            Details
+                                        </th>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td>
+                                                1
+                                            </td>
+                                            <td>
+                                                1232309
+                                            </td>
+                                            <td>
+                                                101.102.4242421
+                                            </td>
+                                            <td>
+                                                101.102.4242421
+                                            </td>
+                                            <td>
+                                                101.102.2342343
+                                            </td>
+                                            <td>
+                                                0
+                                            </td>
+                                            <td>
+                                                600
+                                            </td>
+                                            <td>
+                                                Online
+                                            </td>
+                                            <td>
+                                                April 19, 2019
+                                            </td>
+                                            <td>Mobile first installments</td>
+                                            <td>
+                                                <a class="btn btn-primary btn-sm pull-center" th:href="@{/account}">Details</a>
+                                            </td>
+                                        </tr>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <th:block th:replace="common/footer :: footer"></th:block>
+    </div>
+</div>
+<th:block th:replace="common/footer-plugins :: footer-plugins"></th:block>
+<th:block th:replace="common/footer-lib :: footerlib"></th:block>
+</body>
+
+</html>

@@ -56,4 +56,6 @@ public class Account {
     @OneToMany(mappedBy = "accountId", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JsonIgnore
     private Set<AccountTransanctionHistory> accountTransanctionHistories;
+
+
 }

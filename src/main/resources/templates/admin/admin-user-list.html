@@ -1,0 +1,125 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+  <title>
+    Tables
+  </title>
+  <th:block th:replace="common/header :: header"></th:block>
+</head>
+
+<body class="">
+  <div class="wrapper ">
+    <div class="sidebar" data-color="purple" data-background-color="white" data-image="../assets/img/sidebar-1.jpg">
+      <th:block th:replace="common/sidebar :: sidebar"></th:block>
+    </div>
+    <div class="main-panel">
+      <th:block th:replace="common/navbar :: navbar"></th:block>
+      <div class="content">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header card-header-primary">
+                  <div class="row">
+                    <div class="col-md-8">
+                      <h4 class="card-title ">CBD Payment Users</h4>
+                      <p class="card-category">All available system users</p>
+                    </div>
+                    <div class="col-md-4">
+                      <a class="btn btn-success pull-right" th:href="@{/admin/user/create}">Open System User</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-body">
+                  <div class="table-responsive">
+                    <table class="table">
+                      <thead class=" text-primary">
+                        <th>
+                          System User ID
+                        </th>
+                        <th>
+                          Name
+                        </th>
+                        <th>
+                          Role
+                        </th>
+                        <th>
+                          Creation Date
+                        </th>
+                        <th>
+                          Active
+                        </th>
+                        <th>
+                          Action
+                        </th>
+                        <th>
+                          View
+                        </th>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>
+                            101
+                          </td>
+                          <td>
+                            Biswajit Debnath
+                          </td>
+                          <td>
+                            Admin
+                          </td>
+                          <td>
+                            April 14, 2019
+                          </td>
+                          <td class="text-success">
+                           active
+                          </td>
+                          <td >
+                            <a class="btn btn-primary btn-sm pull-center" th:href="@{/account/active}">Inactive</a>
+                          </td>
+                          <td class="text-success">
+                            <a class="btn btn-primary btn-sm pull-center" th:href="@{/account/active}">Details</a>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            102
+                          </td>
+                          <td>
+                            Mosiur Rahman
+                          </td>
+                          <td>
+                            User
+                          </td>
+                          <td>
+                            April 16, 2019
+                          </td>
+                          <td class="text-warning">
+                            inactive
+                          </td>
+                          <td >
+                            <a class="btn btn-primary btn-sm pull-center" th:href="@{/account/active}">Active</a>
+                          </td>
+                          <td class="text-success">
+                            <a class="btn btn-primary btn-sm pull-center" th:href="@{/account/active}">Details</a>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <th:block th:replace="common/footer :: footer"></th:block>
+    </div>
+  </div>
+  <th:block th:replace="common/footer-plugins :: footer-plugins"></th:block>
+  <th:block th:replace="common/footer-lib :: footerlib"></th:block>
+</body>
+
+</html>

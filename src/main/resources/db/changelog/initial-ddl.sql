@@ -11,6 +11,7 @@ CREATE TABLE profile (
                 sex VARCHAR2(10) NOT NULL,
                 mobile_number VARCHAR2(30) NOT NULL,
                 occupation VARCHAR2(50) NOT NULL,
+                designation VARCHAR2(50) NOT NULL,
                 national_id VARCHAR2(30) NOT NULL,
                 passport_id VARCHAR2(30) NOT NULL,
                 tin_number VARCHAR2(30) NOT NULL,

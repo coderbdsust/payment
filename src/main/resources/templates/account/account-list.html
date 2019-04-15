@@ -1,0 +1,152 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+    <title>
+        Tables
+    </title>
+    <th:block th:replace="common/header :: header"></th:block>
+</head>
+
+<body class="">
+<div class="wrapper ">
+    <div class="sidebar" data-color="purple" data-background-color="white" data-image="../assets/img/sidebar-1.jpg">
+        <th:block th:replace="common/sidebar :: sidebar"></th:block>
+    </div>
+    <div class="main-panel">
+        <th:block th:replace="common/navbar :: navbar"></th:block>
+        <div class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header card-header-primary">
+                                <div class="row">
+                                    <div class="col-md-7">
+                                        <h4 class="card-title ">Customer Accounts</h4>
+                                        <p class="card-category">accounts information</p>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <form class="navbar-form">
+                                            <div class="input-group no-border">
+                                                <input type="text" value="" class="form-control"
+                                                       placeholder="Search...">
+                                                <button type="submit" class="btn btn-white btn-round btn-just-icon">
+                                                    <i class="material-icons">search</i>
+                                                    <div class="ripple-container"></div>
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <a class="btn btn-success pull-right" th:href="@{/account/create}">Open
+                                            Account</a>
+                                    </div>
+                                </div>
+                                <!--<div class="clearfix"></div>-->
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead class=" text-primary">
+                                        <th>
+                                            Customer ID
+                                        </th>
+                                        <th>
+                                            Account Name
+                                        </th>
+                                        <th>
+                                            Account Number
+                                        </th>
+                                        <th>
+                                            National ID
+                                        </th>
+                                        <th>
+                                            Creation Date
+                                        </th>
+                                        <th>
+                                            Active
+                                        </th>
+                                        <th>
+                                            Tnx History
+                                        </th>
+                                        <th>
+                                            Freeze Account
+                                        </th>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td>
+                                                101102500
+                                            </td>
+                                            <td>
+                                                Biswajit Debnath
+                                            </td>
+                                            <td>
+                                                101.102.4242421
+                                            </td>
+                                            <td>
+                                                2355364567
+                                            </td>
+                                            <td>
+                                                April 14, 2019
+                                            </td>
+                                            <td class="text-success">
+                                                Active
+                                            </td>
+                                            <td>
+                                                <a class="btn btn-primary btn-sm pull-center"
+                                                   th:href="@{/account/transanction/history}">View</a>
+                                            </td>
+                                            <td>
+                                                <a class="btn btn-warning btn-sm pull-center"
+                                                   th:href="@{/account/freeze}">Freeze</a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                101102505
+                                            </td>
+                                            <td>
+                                                Mosiur Rahman
+                                            </td>
+                                            <td>
+                                                101.102.4244421
+                                            </td>
+                                            <td>
+                                                2355362222
+                                            </td>
+                                            <td>
+                                                April 15, 2019
+                                            </td>
+                                            <td class="text-success">
+                                                Active
+                                            </td>
+                                            <td>
+                                                <a class="btn btn-primary btn-sm pull-center"
+                                                   th:href="@{/account/transanction/history}">View</a>
+                                            </td>
+                                            <td>
+                                                <a class="btn btn-warning btn-sm pull-center"
+                                                   th:href="@{/account/freeze}">Freeze</a>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <th:block th:replace="common/footer :: footer"></th:block>
+    </div>
+</div>
+<th:block th:replace="common/footer-plugins :: footer-plugins"></th:block>
+<th:block th:replace="common/footer-lib :: footerlib"></th:block>
+</body>
+
+</html>
