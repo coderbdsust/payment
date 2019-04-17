@@ -24,6 +24,7 @@ public class LoginController {
 
     @PostMapping("/login")
     public String doLogin(UserAccount loginUser, HttpSession session){
+        System.out.println("login user");
         System.out.println(loginUser);
         UsernamePasswordAuthenticationToken authentication =
                 (UsernamePasswordAuthenticationToken)
@@ -44,6 +45,7 @@ public class LoginController {
     }
 
     private void validatePrinciple(Object principal) {
+        System.out.println("Validate Principal");
         if (!(principal instanceof SystemUser)) {
             throw new  IllegalArgumentException("Principal can not be null!");
         }
