@@ -38,10 +38,13 @@
                     <table class="table">
                       <thead class=" text-primary">
                         <th>
-                          System User ID
+                          SID
                         </th>
                         <th>
                           Name
+                        </th>
+                        <th>
+                          Email
                         </th>
                         <th>
                           Role
@@ -53,57 +56,42 @@
                           Active
                         </th>
                         <th>
-                          Action
+                          Disable/Enable
                         </th>
                         <th>
-                          View
+                          Delete
                         </th>
                       </thead>
                       <tbody>
-                        <tr>
-                          <td>
+                        <tr th:each="item, idx : ${adminUsers}">
+                          <td th:text="${idx.count}">
                             101
                           </td>
-                          <td>
+                          <td th:text="${item?.getProfileId()?.getFirstName()}">
                             Biswajit Debnath
                           </td>
-                          <td>
+                          <td th:text="${item?.getEmail()}">
+                            bd@gmail.com
+                          </td>
+                          <td th:text="${(item.getUserRoles().size()==2)?'Admin':'User'}">
                             Admin
                           </td>
-                          <td>
+                          <td th:text="${item?.getProfileId()?.getCreatedDate()}">
                             April 14, 2019
                           </td>
-                          <td class="text-success">
+                          <td
+                                  th:classappend="${(item.getEnabled()==true) ? 'text-success' : 'text-danger'}"
+                                  th:text="${item.getEnabled()==true?'Active':'Inactive'}">
                            active
                           </td>
                           <td >
-                            <a class="btn btn-primary btn-sm pull-center" th:href="@{/account/active}">Inactive</a>
-                          </td>
-                          <td class="text-success">
-                            <a class="btn btn-primary btn-sm pull-center" th:href="@{/account/active}">Details</a>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            102
-                          </td>
-                          <td>
-                            Mosiur Rahman
-                          </td>
-                          <td>
-                            User
-                          </td>
-                          <td>
-                            April 16, 2019
-                          </td>
-                          <td class="text-warning">
-                            inactive
+                            <a class="btn btn-sm pull-center"
+                               th:classappend="${(item.getEnabled()==false) ? 'btn-success' : 'btn-danger'}"
+                               th:href="@{'/admin/user/activeorinactive/'+${item.id}}"
+                               th:text="${(item.getEnabled()==true) ? 'Disable' : 'Enable'}" >Disable or Enable</a>
                           </td>
                           <td >
-                            <a class="btn btn-primary btn-sm pull-center" th:href="@{/account/active}">Active</a>
-                          </td>
-                          <td class="text-success">
-                            <a class="btn btn-primary btn-sm pull-center" th:href="@{/account/active}">Details</a>
+                            <a class="btn btn-danger btn-sm pull-center" th:href="@{'/admin/user/delete/'+${item.id}}">Delete</a>
                           </td>
                         </tr>
                       </tbody>

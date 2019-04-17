@@ -1,0 +1,30 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+    <title>
+        User
+    </title>
+    <th:block th:replace="common/header :: header"></th:block>
+    <link href="../../static/customs/css/login.css" th:href="@{/customs/css/login.css}" rel="stylesheet" />
+</head>
+
+<body class="">
+<div class="content login-background">
+    <div class="container-fluid">
+        <div class="row login-block">
+            <div class="col-md-3"></div>
+            <div class="col-md-8">
+                <h1>Oops, Something terribly wrong!</h1>
+                <br/>
+                <a th:href="@{/}" class="btn btn-primary">Go Back</a>
+            </div>
+        </div>
+    </div>
+</div>
+<th:block th:replace="common/footer-plugins :: footer-plugins"></th:block>
+<th:block th:replace="common/footer-lib :: footerlib"></th:block>
+</body>
+</html>

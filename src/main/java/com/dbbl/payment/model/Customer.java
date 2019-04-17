@@ -47,4 +47,84 @@ public class Customer {
     @OneToMany(mappedBy = "customerId", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JsonIgnore
     private Set<BeneficiarAccount> beneficiarAccounts;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Boolean getActive() {
+        return active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
+    }
+
+    public Branch getBranchId() {
+        return branchId;
+    }
+
+    public void setBranchId(Branch branchId) {
+        this.branchId = branchId;
+    }
+
+    public Boolean getLocked() {
+        return locked;
+    }
+
+    public void setLocked(Boolean locked) {
+        this.locked = locked;
+    }
+
+    public Long getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(Long createdBy) {
+        this.createdBy = createdBy;
+    }
+
+    public Date getCreatedDate() {
+        return createdDate;
+    }
+
+    public void setCreatedDate(Date createdDate) {
+        this.createdDate = createdDate;
+    }
+
+    public Long getUpdatedBy() {
+        return updatedBy;
+    }
+
+    public void setUpdatedBy(Long updatedBy) {
+        this.updatedBy = updatedBy;
+    }
+
+    public Date getUpdatedDate() {
+        return updatedDate;
+    }
+
+    public void setUpdatedDate(Date updatedDate) {
+        this.updatedDate = updatedDate;
+    }
+
+    public Profile getProfileId() {
+        return profileId;
+    }
+
+    public void setProfileId(Profile profileId) {
+        this.profileId = profileId;
+    }
+
+    public Set<BeneficiarAccount> getBeneficiarAccounts() {
+        return beneficiarAccounts;
+    }
+
+    public void setBeneficiarAccounts(Set<BeneficiarAccount> beneficiarAccounts) {
+        this.beneficiarAccounts = beneficiarAccounts;
+    }
 }

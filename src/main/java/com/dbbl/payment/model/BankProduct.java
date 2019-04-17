@@ -26,4 +26,52 @@ public class BankProduct {
     @Temporal(value = TemporalType.DATE)
     private Date productCreationDate;
     private Boolean productActive;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getProductName() {
+        return productName;
+    }
+
+    public void setProductName(String productName) {
+        this.productName = productName;
+    }
+
+    public String getProductCode() {
+        return productCode;
+    }
+
+    public void setProductCode(String productCode) {
+        this.productCode = productCode;
+    }
+
+    public String getProductDesc() {
+        return productDesc;
+    }
+
+    public void setProductDesc(String productDesc) {
+        this.productDesc = productDesc;
+    }
+
+    public Date getProductCreationDate() {
+        return productCreationDate;
+    }
+
+    public void setProductCreationDate(Date productCreationDate) {
+        this.productCreationDate = productCreationDate;
+    }
+
+    public Boolean getProductActive() {
+        return productActive;
+    }
+
+    public void setProductActive(Boolean productActive) {
+        this.productActive = productActive;
+    }
 }

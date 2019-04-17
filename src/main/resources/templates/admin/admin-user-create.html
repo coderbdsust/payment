@@ -4,94 +4,118 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 
 <head>
-  <title>
-    User
-  </title>
-  <th:block th:replace="common/header :: header"></th:block>
+    <title>
+        User
+    </title>
+    <th:block th:replace="common/header :: header"></th:block>
 </head>
 
 <body class="">
-  <div class="wrapper ">
+<div class="wrapper ">
     <div class="sidebar" data-color="purple" data-background-color="white" data-image="../assets/img/sidebar-1.jpg">
-      <th:block th:replace="common/sidebar :: sidebar"></th:block>
+        <th:block th:replace="common/sidebar :: sidebar"></th:block>
     </div>
     <div class="main-panel">
-      <th:block th:replace="common/navbar :: navbar"></th:block>
-      <div class="content">
-        <div class="container-fluid">
-          <div class="row">
-            <div class="col-md-2"></div>
-            <div class="col-md-8">
-              <div class="card">
-                <div class="card-header card-header-primary">
-                  <h4 class="card-title">System User Creation</h4>
-                  <p class="card-category">Complete your system user profile</p>
-                </div>
-                <div class="card-body">
-                  <form>
-                    <div class="row">
-                      <div class="col-md-6">
-                        <div class="form-group">
-                          <label class="bmd-label-floating">First Name</label>
-                          <input type="text" class="form-control">
-                        </div>
-                      </div>
-                      <div class="col-md-6">
-                        <div class="form-group">
-                          <label class="bmd-label-floating">Last Name</label>
-                          <input type="text" class="form-control">
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-6">
-                        <div class="form-group">
-                          <label class="bmd-label-floating">Email</label>
-                          <input type="email" class="form-control">
-                        </div>
-                      </div>
+        <th:block th:replace="common/navbar :: navbar"></th:block>
+        <div class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-8">
+                        <div class="card">
+                            <div class="card-header card-header-primary">
+                                <h4 class="card-title">System User Creation</h4>
+                                <p class="card-category">Complete your system user profile</p>
+                            </div>
+                            <div class="card-body">
+                                <form th:action="@{/admin/user/create}" th:object="${userAccountDto}" method="POST">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="bmd-label-floating">First Name</label>
+                                                <input type="text" name="firstName" th:field="*{firstName}"
+                                                       class="form-control">
+                                                <span th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}" class="text-dangers">First name length min 4 and max 30</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="bmd-label-floating">Last Name</label>
+                                                <input type="text" name="lastName" th:field="*{lastName}"
+                                                       class="form-control">
+                                                <span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}" class="text-danger">Last name length min 4 and max 30</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="bmd-label-floating">Email</label>
+                                                <input type="email" name="email" th:field="*{email}"
+                                                       class="form-control">
+                                                <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="text-danger">Please give a valid email address</span>
+                                            </div>
+                                        </div>
 
-                      <div class="col-md-3">
-                        <div class="form-group">
-                          <label class="bmd-label-floating">Contact</label>
-                          <input type="text" class="form-control">
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label class="bmd-label-floating">Contact</label>
+                                                <input type="text" name="contact" th:field="*{contact}"
+                                                       class="form-control">
+                                                <span th:if="${#fields.hasErrors('contact')}" th:errors="*{contact}" class="text-danger">Please give contact</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <label>Role</label>
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                        <label class="radio-inline">
+                                                            <input type="radio" name="roleName" id="inlineRadio1" value="Admin"> Admin
+                                                        </label>
+                                                        <label class="radio-inline">
+                                                            <input type="radio" name="roleName" id="inlineRadio2" value="User"> User
+                                                        </label>
+                                                        <span th:if="${#fields.hasErrors('roleName')}" th:errors="*{roleName}" class="text-danger">Please select a role</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="bmd-label-floating">Password</label>
+                                                <input type="password" name="password" th:field="*{password}"
+                                                       class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="bmd-label-floating">Confirm Password</label>
+                                                <input type="password" name="confirmPassword"
+                                                       th:field="*{confirmPassword}" class="form-control">
+                                                <span th:if="${#fields.hasErrors('confirmPassword')}" th:errors="*{confirmPassword}" class="text-danger">Password not matched!</span>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary pull-right">Create System User</button>
+                                    <div class="clearfix"></div>
+                                </form>
+                            </div>
                         </div>
-                      </div>
-                      <div class="col-md-3">
-                        <div class="form-group">
-                          <label class="bmd-label-floating">Role</label>
-                          <input type="text" class="form-control">
-                        </div>
-                      </div>
                     </div>
-                    <div class="row">
-                      <div class="col-md-6">
-                        <div class="form-group">
-                          <label class="bmd-label-floating">Password</label>
-                          <input type="password" class="form-control">
-                        </div>
-                      </div>
-                      <div class="col-md-6">
-                        <div class="form-group">
-                          <label class="bmd-label-floating">Confirm Password</label>
-                          <input type="password" class="form-control">
-                        </div>
-                      </div>
-                    </div>
-                    <button type="submit" class="btn btn-primary pull-right">Create System User</button>
-                    <div class="clearfix"></div>
-                  </form>
                 </div>
-              </div>
             </div>
-          </div>
         </div>
-      </div>
-      <th:block th:replace="common/footer :: footer"></th:block>
+        <th:block th:replace="common/footer :: footer"></th:block>
     </div>
-  </div>
-  <th:block th:replace="common/footer-plugins :: footer-plugins"></th:block>
-  <th:block th:replace="common/footer-lib :: footerlib"></th:block>
+</div>
+<th:block th:replace="common/footer-plugins :: footer-plugins"></th:block>
+<th:block th:replace="common/footer-lib :: footerlib"></th:block>
 </body>
 
 </html>

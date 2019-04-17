@@ -26,4 +26,52 @@ public class Branch {
     private String branchCode;
     private String branchContact;
     private String branchRoutingNumber;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getBranchName() {
+        return branchName;
+    }
+
+    public void setBranchName(String branchName) {
+        this.branchName = branchName;
+    }
+
+    public String getBranchAddress() {
+        return branchAddress;
+    }
+
+    public void setBranchAddress(String branchAddress) {
+        this.branchAddress = branchAddress;
+    }
+
+    public String getBranchCode() {
+        return branchCode;
+    }
+
+    public void setBranchCode(String branchCode) {
+        this.branchCode = branchCode;
+    }
+
+    public String getBranchContact() {
+        return branchContact;
+    }
+
+    public void setBranchContact(String branchContact) {
+        this.branchContact = branchContact;
+    }
+
+    public String getBranchRoutingNumber() {
+        return branchRoutingNumber;
+    }
+
+    public void setBranchRoutingNumber(String branchRoutingNumber) {
+        this.branchRoutingNumber = branchRoutingNumber;
+    }
 }

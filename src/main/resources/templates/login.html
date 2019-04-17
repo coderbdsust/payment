@@ -22,12 +22,12 @@
                         <h4 class="card-title">Login</h4>
                     </div>
                     <div class="card-body">
-                        <form>
+                        <form th:action="@{/login}" method="post" th:object="${userAccountDto}">
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label class="bmd-label-floating">Username or Email</label>
-                                        <input type="text" class="form-control">
+                                        <input type="text" name="username" class="form-control">
                                     </div>
                                 </div>
                             </div>
@@ -35,13 +35,15 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label class="bmd-label-floating">Password</label>
-                                        <input type="password" class="form-control">
+                                        <input type="password" name="password" class="form-control">
                                     </div>
                                 </div>
                             </div>
+
                             <button type="submit" class="btn btn-primary pull-right">Login</button>
                             <div class="clearfix"></div>
                         </form>
+                        <span th:if="${error==true}" class="text-danger">Invalid username or password!</span>
                     </div>
                 </div>
             </div>

@@ -76,6 +76,7 @@ CREATE TABLE customer (
                 created_date TIMESTAMP NOT NULL,
                 updated_by NUMBER NOT NULL,
                 updated_date TIMESTAMP NOT NULL,
+                deleted NUMBER NOT NULL,
                 profile_id_fk NUMBER NOT NULL,
                 CONSTRAINT CUSTOMER_PK PRIMARY KEY (id)
 );
@@ -92,6 +93,7 @@ CREATE TABLE account (
                 updated_by NUMBER NOT NULL,
                 updated_date TIMESTAMP NOT NULL,
                 created_date TIMESTAMP NOT NULL,
+                deleted NUMBER NOT NULL,
                 brank_product_id_fk NUMBER NOT NULL,
                 CONSTRAINT ACCOUNT_PK PRIMARY KEY (id)
 );

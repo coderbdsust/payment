@@ -32,7 +32,7 @@ public class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private Double balance;
+    private Float balance;
     @ManyToOne
     @JoinColumn(name = "branch_id",referencedColumnName = "id")
     @JsonIgnore
@@ -57,5 +57,99 @@ public class Account {
     @JsonIgnore
     private Set<AccountTransanctionHistory> accountTransanctionHistories;
 
+    public Long getId() {
+        return id;
+    }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Float getBalance() {
+        return balance;
+    }
+
+    public void setBalance(Float balance) {
+        this.balance = balance;
+    }
+
+    public Branch getBranchId() {
+        return branchId;
+    }
+
+    public void setBranchId(Branch branchId) {
+        this.branchId = branchId;
+    }
+
+    public Customer getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(Customer customerId) {
+        this.customerId = customerId;
+    }
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+
+    public String getAccountType() {
+        return accountType;
+    }
+
+    public void setAccountType(String accountType) {
+        this.accountType = accountType;
+    }
+
+    public Long getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(Long createdBy) {
+        this.createdBy = createdBy;
+    }
+
+    public Date getCreatedDate() {
+        return createdDate;
+    }
+
+    public void setCreatedDate(Date createdDate) {
+        this.createdDate = createdDate;
+    }
+
+    public Long getUpdatedBy() {
+        return updatedBy;
+    }
+
+    public void setUpdatedBy(Long updatedBy) {
+        this.updatedBy = updatedBy;
+    }
+
+    public Date getUpdatedDate() {
+        return updatedDate;
+    }
+
+    public void setUpdatedDate(Date updatedDate) {
+        this.updatedDate = updatedDate;
+    }
+
+    public BankProduct getBankProductId() {
+        return bankProductId;
+    }
+
+    public void setBankProductId(BankProduct bankProductId) {
+        this.bankProductId = bankProductId;
+    }
+
+    public Set<AccountTransanctionHistory> getAccountTransanctionHistories() {
+        return accountTransanctionHistories;
+    }
+
+    public void setAccountTransanctionHistories(Set<AccountTransanctionHistory> accountTransanctionHistories) {
+        this.accountTransanctionHistories = accountTransanctionHistories;
+    }
 }
