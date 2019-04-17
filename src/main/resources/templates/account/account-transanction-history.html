@@ -76,43 +76,37 @@
                                         <th>
                                             Reference
                                         </th>
-                                        <th>
-                                            Details
-                                        </th>
                                         </thead>
                                         <tbody>
-                                        <tr>
-                                            <td>
+                                        <tr th:each="ath: ${accountTransanctionHistories}">
+                                            <td th:text="${ath.getId()}">
                                                 1
                                             </td>
-                                            <td>
+                                            <td th:text="${ath.getAccountId().getCustomerId().getId()}">
                                                 1232309
                                             </td>
-                                            <td>
+                                            <td th:text="${ath.getAccountId().getBranchId()+'.'+ath.getAccountId().getBankProductId()+'.'+ath.getAccountId().getId()}">
                                                 101.102.4242421
                                             </td>
-                                            <td>
+                                            <td th:text="${ath.getFromAccount()}">
                                                 101.102.4242421
                                             </td>
-                                            <td>
+                                            <td th:text="${ath.getToAccount()}">
                                                 101.102.2342343
                                             </td>
-                                            <td>
+                                            <td th:text="${ath.getCreditAmount()}">
                                                 0
                                             </td>
-                                            <td>
+                                            <td th:text="${ath.getDebitAmount()}">
                                                 600
                                             </td>
-                                            <td>
+                                            <td th:text="${ath.getTransanctionType()}">
                                                 Online
                                             </td>
-                                            <td>
+                                            <td th:text="${ath.getTransanctionDate()}">
                                                 April 19, 2019
                                             </td>
-                                            <td>Mobile first installments</td>
-                                            <td>
-                                                <a class="btn btn-primary btn-sm pull-center" th:href="@{/account}">Details</a>
-                                            </td>
+                                            <td th:text="${ath.getReference()}">Mobile first installments</td>
                                         </tr>
 
                                         </tbody>

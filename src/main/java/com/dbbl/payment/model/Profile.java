@@ -1,10 +1,15 @@
 package com.dbbl.payment.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Collection;
 import java.util.Date;
 import java.util.Set;
 import javax.persistence.*;
+import javax.transaction.Transactional;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 /*
 CREATE TABLE profile (
                 id NUMBER NOT NULL,
@@ -33,15 +38,25 @@ public class Profile {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @Size(min = 4, max = 30, message = "First name length will be in between 4 to 30 characters")
     private String firstName;
+    @Size(min = 4, max = 30, message = "Last name length will be in between 4 to 30 characters")
     private String lastName;
     @Temporal(value = TemporalType.DATE)
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date dateOfBirth;
     private String email;
+    @Size(min = 4, max = 30, message = "Country is required")
     private String nationality;
+    @Size(min = 4, max = 30, message = "Gender is required")
     private String sex;
+    @NotBlank(message = "Contact is required")
     private String mobileNumber;
+    @Size(min = 4, max = 40, message = "Occupation is required")
     private String occupation;
+    @Size(min = 4, max = 40, message = "Designation is required")
+    private String designation;
+    @Size(min = 8, max =30, message = "NationalID card length will be in between 10 to 30 characters")
     private String nationalId;
     private String passportId;
     private String tinNumber;
@@ -128,6 +143,14 @@ public class Profile {
         this.occupation = occupation;
     }
 
+    public String getDesignation() {
+        return designation;
+    }
+
+    public void setDesignation(String designation) {
+        this.designation = designation;
+    }
+
     public String getNationalId() {
         return nationalId;
     }
@@ -211,7 +234,6 @@ public class Profile {
                 ", createdDate=" + createdDate +
                 ", updatedBy=" + updatedBy +
                 ", updatedDate=" + updatedDate +
-                ", addresses=" + addresses +
                 '}';
     }
 }

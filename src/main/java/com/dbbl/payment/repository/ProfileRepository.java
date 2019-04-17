@@ -9,4 +9,5 @@ import javax.transaction.Transactional;
 @Repository
 @Transactional
 public interface ProfileRepository extends JpaRepository<Profile, Long> {
+    public Profile findByNationalId(String nationalId);
 }

@@ -4,6 +4,8 @@ import com.dbbl.payment.constants.AddressType;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.math.BigInteger;
 
 /*
@@ -25,11 +27,19 @@ public class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @NotBlank(message = "Road no is required")
+    @Size( max = 50, message = "Road no length limit excceded")
     private String roadNo;
+    @NotBlank(message = "House no is required")
+    @Size( max = 50, message = "House no length limit excceded")
     private String houseNo;
+    @Size(min = 2, max = 12, message = "Post code is required")
     private String postCode;
+    @Size(min = 2, max = 30, message = "City is required")
     private String city;
+    @Size(min = 2, max = 30, message = "Country is required")
     private String country;
+    @Size(min = 2, max = 30, message = "Contact is required")
     private String contact;
     private AddressType addressType;
     @ManyToOne
@@ -107,5 +117,19 @@ public class Address {
 
     public void setProfileId(Profile profileId) {
         this.profileId = profileId;
+    }
+
+    @Override
+    public String toString() {
+        return "Address{" +
+                "id=" + id +
+                ", roadNo='" + roadNo + '\'' +
+                ", houseNo='" + houseNo + '\'' +
+                ", postCode='" + postCode + '\'' +
+                ", city='" + city + '\'' +
+                ", country='" + country + '\'' +
+                ", contact='" + contact + '\'' +
+                ", addressType=" + addressType +
+                '}';
     }
 }

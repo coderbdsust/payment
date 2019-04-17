@@ -41,7 +41,8 @@
                                         </form>
                                     </div>
                                     <div class="col-md-2">
-                                        <a class="btn btn-success pull-right" th:href="@{/account/create}"><i class="material-icons">add</i> Open
+                                        <a class="btn btn-success pull-right" th:href="@{/account/create}"><i
+                                                class="material-icons">add</i> Open
                                             Account</a>
                                     </div>
                                 </div>
@@ -66,6 +67,9 @@
                                             Creation Date
                                         </th>
                                         <th>
+                                            Balance
+                                        </th>
+                                        <th>
                                             Active
                                         </th>
                                         <th>
@@ -76,60 +80,35 @@
                                         </th>
                                         </thead>
                                         <tbody>
-                                        <tr>
-                                            <td>
+                                        <tr th:each="acc:${accounts}">
+                                            <td th:text="${acc.getId()}">
                                                 101102500
                                             </td>
-                                            <td>
+                                            <td th:text="${acc?.getCustomerId()?.getProfileId()?.getFirstName()+' '+acc?.getCustomerId()?.getProfileId()?.getLastName()}">
                                                 Biswajit Debnath
                                             </td>
-                                            <td>
+                                            <td th:text="${acc?.getBranchId()+'.'+acc.getBankProductId()+'.'+acc.getId()}">
                                                 101.102.4242421
                                             </td>
-                                            <td>
+                                            <td th:text="${acc.getCustomerId().getProfileId()?.getNationalId()}">
                                                 2355364567
                                             </td>
-                                            <td>
+                                            <td th:text="${acc.getCustomerId().getProfileId()?.getCreatedDate()}">
                                                 April 14, 2019
                                             </td>
-                                            <td class="text-success">
+                                            <td th:text="${acc.getBalance()}">
+                                                0.00
+                                            </td>
+                                            <td class="text-success" th:text="${acc.isEnabled()}">
                                                 Active
                                             </td>
                                             <td>
                                                 <a class="btn btn-primary btn-sm pull-center"
-                                                   th:href="@{/account/transanction/history}">View</a>
+                                                   th:href="@{'/account/transanction/history/'+${acc.getId()}}">View</a>
                                             </td>
                                             <td>
                                                 <a class="btn btn-warning btn-sm pull-center"
-                                                   th:href="@{/account/freeze}">Freeze</a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                101102505
-                                            </td>
-                                            <td>
-                                                Mosiur Rahman
-                                            </td>
-                                            <td>
-                                                101.102.4244421
-                                            </td>
-                                            <td>
-                                                2355362222
-                                            </td>
-                                            <td>
-                                                April 15, 2019
-                                            </td>
-                                            <td class="text-success">
-                                                Active
-                                            </td>
-                                            <td>
-                                                <a class="btn btn-primary btn-sm pull-center"
-                                                   th:href="@{/account/transanction/history}">View</a>
-                                            </td>
-                                            <td>
-                                                <a class="btn btn-warning btn-sm pull-center"
-                                                   th:href="@{/account/freeze}">Freeze</a>
+                                                   th:href="@{'/account/freeze/'+${acc.getId()}}">Freeze</a>
                                             </td>
                                         </tr>
                                         </tbody>

@@ -27,43 +27,70 @@
                                 <p class="card-category">Complete your account information</p>
                             </div>
                             <div class="card-body">
-                                <form>
+                                <form th:action="@{/account/create}" th:object="${customerDto}" method="post">
                                     <div class="row">
-                                        <div class="col-md-3">
-                                            <div class="form-group">
-                                                <label class="bmd-label-floating">First Name</label>
-                                                <input type="text" class="form-control" disabled>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <div class="form-group">
-                                                <label class="bmd-label-floating">Last Name</label>
-                                                <input type="text" class="form-control">
-                                            </div>
-                                        </div>
-
                                         <div class="col-md-2">
                                             <div class="form-group">
-                                                <label class="bmd-label-floating">Branch Name</label>
-                                                <input type="text" class="form-control">
+                                                <label class="bmd-label-floating">First Name</label>
+                                                <input type="text" class="form-control" name="profile.firstName">
+                                                <span th:if="${#fields.hasErrors('profile.firstName')}" th:errors="*{profile.firstName}" class="text-danger">First name length min 4 and max 30</span>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="form-group">
+                                                <label class="bmd-label-floating">Last Name</label>
+                                                <input type="text" class="form-control" name="profile.lastName">
+                                                <span th:if="${#fields.hasErrors('profile.lastName')}" th:errors="*{profile.lastName}" class="text-danger">Last name length min 4 and max 30</span>
+
                                             </div>
                                         </div>
 
                                         <div class="col-md-2">
                                             <div class="form-group">
                                                 <label>Date</label>
-                                                <input class="form-control" type="date"  value="01/01/1970">
+                                                <input class="form-control" type="text"  name="profile.dateOfBirth" value="01/01/1970">
+                                                <span th:if="${#fields.hasErrors('profile.dateOfBirth')}"  class="text-danger">Date of birth is required (dd/mm/yyyy)</span>
+
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-2">
+                                            <div class="form-group">
+                                                <label>Select CBD Branch</label>
+                                                <select class="form-control" name="account.branchId" id="branchId">
+                                                    <option value="101">Rampura</option>
+                                                    <option value="102">Badda</option>
+                                                    <option value="103">Motijheel</option>
+                                                </select>
+                                                <span th:if="${#fields.hasErrors('account.branchId')}" th:errors="*{account.branchId}" class="text-danger">Branch is required</span>
+
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-2">
+                                            <div class="form-group">
+                                                <label>Account Type</label>
+                                                <select class="form-control" name="account.bankProductId">
+                                                    <option value="101">Saving Account</option>
+                                                    <option value="102">Current Account</option>
+                                                    <option value="103">Power Account</option>
+                                                </select>
+                                                <span th:if="${#fields.hasErrors('account.bankProductId')}" th:errors="*{account.bankProductId}" class="text-danger">Acount type is required</span>
+
                                             </div>
                                         </div>
 
                                         <div class="col-md-2">
                                             <div class="form-group">
                                                 <label>Select Sex</label>
-                                                <select class="form-control" id="sex">
+                                                <select class="form-control" name="profile.sex" id="sex">
                                                     <option value="Male">Male</option>
                                                     <option value="Female">Female</option>
-                                                    <option value="Transgender">Transgender</option>
+                                                    <option value="Others">Others</option>
                                                 </select>
+                                                <span th:if="${#fields.hasErrors('profile.sex')}" th:errors="*{profile.sex}" class="text-danger">Gender is required</span>
+
                                             </div>
                                         </div>
 
@@ -72,33 +99,50 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label class="bmd-label-floating">Email</label>
-                                                <input type="email" class="form-control">
+                                                <input type="email" class="form-control" name="profile.email">
+                                                <span th:if="${#fields.hasErrors('profile.email')}" th:errors="*{profile.email}" class="text-danger">Email is required</span>
+
                                             </div>
                                         </div>
                                         <div class="col-md-3">
                                             <div class="form-group">
                                                 <label class="bmd-label-floating">Contact</label>
-                                                <input type="text" class="form-control">
+                                                <input type="text" class="form-control" name="profile.mobileNumber">
+                                                <span th:if="${#fields.hasErrors('profile.mobileNumber')}" th:errors="*{profile.mobileNumber}" class="text-danger">Mobile number is required</span>
+
                                             </div>
                                         </div>
                                         <div class="col-md-3">
                                             <div class="form-group">
                                                 <label class="bmd-label-floating">Nationality</label>
-                                                <input type="text" class="form-control">
+                                                <input type="text" class="form-control" name="profile.nationality">
+                                                <span th:if="${#fields.hasErrors('profile.nationality')}" th:errors="*{profile.nationality}" class="text-danger">Nationality is required</span>
+
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-md-6">
+                                        <div class="col-md-4">
                                             <div class="form-group">
                                                 <label class="bmd-label-floating">Occupation</label>
-                                                <input type="text" class="form-control">
+                                                <input type="text" class="form-control" name="profile.occupation">
+                                                <span th:if="${#fields.hasErrors('profile.occupation')}" th:errors="*{profile.occupation}" class="text-danger">Occupation is required</span>
+
                                             </div>
                                         </div>
-                                        <div class="col-md-6">
+                                        <div class="col-md-4">
                                             <div class="form-group">
                                                 <label class="bmd-label-floating">Designation</label>
-                                                <input type="text" class="form-control">
+                                                <input type="text" class="form-control" name="profile.designation">
+                                                <span th:if="${#fields.hasErrors('profile.designation')}" th:errors="*{profile.designation}" class="text-danger">Designation is required</span>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label class="bmd-label-floating">Tin Number</label>
+                                                <input type="text" class="form-control" name="profile.tinNumber">
+                                                <span th:if="${#fields.hasErrors('profile.tinNumber')}" th:errors="*{profile.tinNumber}" class="text-danger">Tin number is required</span>
                                             </div>
                                         </div>
                                     </div>
@@ -106,13 +150,15 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label class="bmd-label-floating">National ID</label>
-                                                <input type="text" class="form-control">
+                                                <input type="text" class="form-control" name="profile.nationalId">
+                                                <span th:if="${#fields.hasErrors('profile.nationalId')}" th:errors="*{profile.nationalId}" class="text-danger">National ID is required</span>
+
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label class="bmd-label-floating">Passport ID</label>
-                                                <input type="text" class="form-control">
+                                                <input type="text" class="form-control" name="profile.passportId">
                                             </div>
                                         </div>
                                     </div>
@@ -126,13 +172,17 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="bmd-label-floating">Road No</label>
-                                                        <input type="text" class="form-control">
+                                                        <input type="text" name="presentAddress.roadNo" class="form-control">
+                                                        <span th:if="${#fields.hasErrors('presentAddress.roadNo')}" th:errors="*{presentAddress.roadNo}" class="text-danger">Road no is required</span>
+
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="bmd-label-floating">House No</label>
-                                                        <input type="text" class="form-control">
+                                                        <input type="text" name="presentAddress.houseNo" class="form-control">
+                                                        <span th:if="${#fields.hasErrors('presentAddress.houseNo')}" th:errors="*{presentAddress.houseNo}" class="text-danger">House no is required</span>
+
                                                     </div>
                                                 </div>
                                             </div>
@@ -140,25 +190,32 @@
                                                 <div class="col-md-3">
                                                     <div class="form-group">
                                                         <label class="bmd-label-floating">City</label>
-                                                        <input type="text" class="form-control">
+                                                        <input type="text" name="presentAddress.city" class="form-control">
+                                                        <span th:if="${#fields.hasErrors('presentAddress.city')}" th:errors="*{presentAddress.city}" class="text-danger">City is required</span>
+
                                                     </div>
                                                 </div>
                                                 <div class="col-md-3">
                                                     <div class="form-group">
                                                         <label class="bmd-label-floating">Postal Code</label>
-                                                        <input type="text" class="form-control">
+                                                        <input type="text" name="presentAddress.postCode" class="form-control">
+                                                        <span th:if="${#fields.hasErrors('presentAddress.postCode')}" th:errors="*{presentAddress.postCode}" class="text-danger">Post code is required</span>
+
                                                     </div>
                                                 </div>
                                                 <div class="col-md-3">
                                                     <div class="form-group">
                                                         <label class="bmd-label-floating">Country</label>
-                                                        <input type="text" class="form-control">
+                                                        <input type="text" name="presentAddress.country" class="form-control">
+                                                        <span th:if="${#fields.hasErrors('presentAddress.country')}" th:errors="*{presentAddress.country}" class="text-danger">Country is required</span>
+
                                                     </div>
                                                 </div>
                                                 <div class="col-md-3">
                                                     <div class="form-group">
                                                         <label class="bmd-label-floating">Contact</label>
-                                                        <input type="text" class="form-control">
+                                                        <input type="text" name="presentAddress.contact" class="form-control">
+                                                        <span th:if="${#fields.hasErrors('presentAddress.contact')}" th:errors="*{presentAddress.contact}" class="text-danger">Contact is required</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -175,13 +232,17 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="bmd-label-floating">Road No</label>
-                                                        <input type="text" class="form-control">
+                                                        <input type="text" name="parmanentAddress.roadNo" class="form-control">
+                                                        <span th:if="${#fields.hasErrors('parmanentAddress.contact')}" th:errors="*{parmanentAddress.contact}" class="text-danger">Road no is required</span>
+
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="bmd-label-floating">House No</label>
-                                                        <input type="text" class="form-control">
+                                                        <input type="text" name="parmanentAddress.houseNo" class="form-control">
+                                                        <span th:if="${#fields.hasErrors('parmanentAddress.contact')}" th:errors="*{parmanentAddress.contact}" class="text-danger">House no is required</span>
+
                                                     </div>
                                                 </div>
                                             </div>
@@ -189,25 +250,33 @@
                                                 <div class="col-md-3">
                                                     <div class="form-group">
                                                         <label class="bmd-label-floating">City</label>
-                                                        <input type="text" class="form-control">
+                                                        <input type="text" name="parmanentAddress.city" class="form-control">
+                                                        <span th:if="${#fields.hasErrors('parmanentAddress.contact')}" th:errors="*{parmanentAddress.contact}" class="text-danger">City is required</span>
+
                                                     </div>
                                                 </div>
                                                 <div class="col-md-3">
                                                     <div class="form-group">
                                                         <label class="bmd-label-floating">Postal Code</label>
-                                                        <input type="text" class="form-control">
+                                                        <input type="text" name="parmanentAddress.postCode" class="form-control">
+                                                        <span th:if="${#fields.hasErrors('parmanentAddress.contact')}" th:errors="*{parmanentAddress.contact}" class="text-danger">Post code is required</span>
+
                                                     </div>
                                                 </div>
                                                 <div class="col-md-3">
                                                     <div class="form-group">
                                                         <label class="bmd-label-floating">Country</label>
-                                                        <input type="text" class="form-control">
+                                                        <input type="text"  name="parmanentAddress.country" class="form-control">
+                                                        <span th:if="${#fields.hasErrors('parmanentAddress.contact')}" th:errors="*{parmanentAddress.contact}" class="text-danger">Country is required</span>
+
                                                     </div>
                                                 </div>
                                                 <div class="col-md-3">
                                                     <div class="form-group">
                                                         <label class="bmd-label-floating">Contact</label>
-                                                        <input type="text" class="form-control">
+                                                        <input type="text" name="parmanentAddress.contact" class="form-control">
+                                                        <span th:if="${#fields.hasErrors('parmanentAddress.contact')}" th:errors="*{parmanentAddress.contact}" class="text-danger">Contact is required</span>
+
                                                     </div>
                                                 </div>
                                             </div>
@@ -224,13 +293,17 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="bmd-label-floating">Road No</label>
-                                                        <input type="text" class="form-control">
+                                                        <input type="text" name="officeAddress.roadNo" class="form-control">
+                                                        <span th:if="${#fields.hasErrors('officeAddress.roadNo')}" th:errors="*{officeAddress.roadNo}" class="text-danger">Road no is required</span>
+
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="bmd-label-floating">House No</label>
-                                                        <input type="text" class="form-control">
+                                                        <input type="text" name="officeAddress.houseNo" class="form-control">
+                                                        <span th:if="${#fields.hasErrors('officeAddress.houseNo')}" th:errors="*{officeAddress.houseNo}" class="text-danger">House no is required</span>
+
                                                     </div>
                                                 </div>
                                             </div>
@@ -238,25 +311,33 @@
                                                 <div class="col-md-3">
                                                     <div class="form-group">
                                                         <label class="bmd-label-floating">City</label>
-                                                        <input type="text" class="form-control">
+                                                        <input type="text" name="officeAddress.city" class="form-control">
+                                                        <span th:if="${#fields.hasErrors('officeAddress.city')}" th:errors="*{officeAddress.city}" class="text-danger">City is required</span>
+
                                                     </div>
                                                 </div>
                                                 <div class="col-md-3">
                                                     <div class="form-group">
                                                         <label class="bmd-label-floating">Postal Code</label>
-                                                        <input type="text" class="form-control">
+                                                        <input type="text" name="officeAddress.postCode" class="form-control">
+                                                        <span th:if="${#fields.hasErrors('officeAddress.postCode')}" th:errors="*{officeAddress.postCode}" class="text-danger">Post code is required</span>
+
                                                     </div>
                                                 </div>
                                                 <div class="col-md-3">
                                                     <div class="form-group">
                                                         <label class="bmd-label-floating">Country</label>
-                                                        <input type="text" class="form-control">
+                                                        <input type="text" name="officeAddress.country" class="form-control">
+                                                        <span th:if="${#fields.hasErrors('officeAddress.country')}" th:errors="*{officeAddress.country}" class="text-danger">Country is required</span>
+
                                                     </div>
                                                 </div>
                                                 <div class="col-md-3">
                                                     <div class="form-group">
                                                         <label class="bmd-label-floating">Contact</label>
-                                                        <input type="text" class="form-control">
+                                                        <input type="text" name="officeAddress.contact" class="form-control">
+                                                        <span th:if="${#fields.hasErrors('officeAddress.contact')}" th:errors="*{officeAddress.contact}" class="text-danger">Contact is required</span>
+
                                                     </div>
                                                 </div>
                                             </div>

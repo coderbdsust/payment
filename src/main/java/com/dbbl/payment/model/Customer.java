@@ -26,13 +26,11 @@ CREATE TABLE customer (
 @Entity
 public class Customer {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "customer_generator")
+    @SequenceGenerator(name="customer_generator", sequenceName = "customer_generator_seq", initialValue = 1000001)
     private Long id;
     private Boolean active;
-    @ManyToOne
-    @JoinColumn(name = "branch_id",referencedColumnName = "id")
-    @JsonIgnore
-    private Branch branchId;
+    private Long branchId;
     private Boolean locked;
     private Long createdBy;
     @Temporal(value = TemporalType.DATE)
@@ -64,11 +62,11 @@ public class Customer {
         this.active = active;
     }
 
-    public Branch getBranchId() {
+    public Long getBranchId() {
         return branchId;
     }
 
-    public void setBranchId(Branch branchId) {
+    public void setBranchId(Long branchId) {
         this.branchId = branchId;
     }
 
@@ -126,5 +124,19 @@ public class Customer {
 
     public void setBeneficiarAccounts(Set<BeneficiarAccount> beneficiarAccounts) {
         this.beneficiarAccounts = beneficiarAccounts;
+    }
+
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "id=" + id +
+                ", active=" + active +
+                ", branchId=" + branchId +
+                ", locked=" + locked +
+                ", createdBy=" + createdBy +
+                ", createdDate=" + createdDate +
+                ", updatedBy=" + updatedBy +
+                ", updatedDate=" + updatedDate +
+                '}';
     }
 }

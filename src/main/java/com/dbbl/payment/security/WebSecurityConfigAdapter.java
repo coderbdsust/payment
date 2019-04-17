@@ -7,7 +7,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
 
-@EnableWebSecurity
+//@EnableWebSecurity
 public class WebSecurityConfigAdapter extends WebSecurityConfigurerAdapter {
     @Autowired
     private Authenticator authenticator;

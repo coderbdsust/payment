@@ -30,29 +30,24 @@ CREATE TABLE account (
 @Entity
 public class Account {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "account_number_generator")
+    @SequenceGenerator(name="account_number_generator", sequenceName = "account_number_generator_seq", initialValue = 1000001)
     private Long id;
-    private Float balance;
-    @ManyToOne
-    @JoinColumn(name = "branch_id",referencedColumnName = "id")
-    @JsonIgnore
-    private Branch branchId;
+    private Float balance=0.0f;
+    private Long branchId;
     @ManyToOne
     @JoinColumn(name = "customer_id",referencedColumnName = "id")
     @JsonIgnore
     private Customer customerId;
     private boolean enabled;
-    private String accountType;
+    private Long accountType;
     private Long createdBy;
     @Temporal(value = TemporalType.DATE)
     private Date createdDate;
     private Long updatedBy;
     @Temporal(value = TemporalType.DATE)
     private Date updatedDate;
-    @ManyToOne
-    @JoinColumn(name = "bank_product_id",referencedColumnName = "id")
-    @JsonIgnore
-    private BankProduct bankProductId;
+    private Long bankProductId;
     @OneToMany(mappedBy = "accountId", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JsonIgnore
     private Set<AccountTransanctionHistory> accountTransanctionHistories;
@@ -73,12 +68,28 @@ public class Account {
         this.balance = balance;
     }
 
-    public Branch getBranchId() {
+    public Long getBranchId() {
         return branchId;
     }
 
-    public void setBranchId(Branch branchId) {
+    public void setBranchId(Long branchId) {
         this.branchId = branchId;
+    }
+
+    public Long getAccountType() {
+        return accountType;
+    }
+
+    public void setAccountType(Long accountType) {
+        this.accountType = accountType;
+    }
+
+    public Long getBankProductId() {
+        return bankProductId;
+    }
+
+    public void setBankProductId(Long bankProductId) {
+        this.bankProductId = bankProductId;
     }
 
     public Customer getCustomerId() {
@@ -97,13 +108,6 @@ public class Account {
         this.enabled = enabled;
     }
 
-    public String getAccountType() {
-        return accountType;
-    }
-
-    public void setAccountType(String accountType) {
-        this.accountType = accountType;
-    }
 
     public Long getCreatedBy() {
         return createdBy;
@@ -137,13 +141,6 @@ public class Account {
         this.updatedDate = updatedDate;
     }
 
-    public BankProduct getBankProductId() {
-        return bankProductId;
-    }
-
-    public void setBankProductId(BankProduct bankProductId) {
-        this.bankProductId = bankProductId;
-    }
 
     public Set<AccountTransanctionHistory> getAccountTransanctionHistories() {
         return accountTransanctionHistories;

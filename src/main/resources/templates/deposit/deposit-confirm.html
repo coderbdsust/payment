@@ -1,0 +1,120 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+  <title>
+    User
+  </title>
+  <th:block th:replace="common/header :: header"></th:block>
+</head>
+
+<body class="">
+  <div class="wrapper ">
+    <div class="sidebar" data-color="purple" data-background-color="white" data-image="../assets/img/sidebar-1.jpg">
+      <th:block th:replace="common/sidebar :: sidebar"></th:block>
+    </div>
+    <div class="main-panel">
+      <th:block th:replace="common/navbar :: navbar"></th:block>
+      <div class="content">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+              <div class="card">
+                <div class="card-header card-header-primary">
+                  <h4 class="card-title">Deposit</h4>
+                  <p class="card-category">add money to your account</p>
+                </div>
+                <div class="card-body">
+                  <form th:action="@{/account/transanction/deposit/confirm}" method="post" th:object="${transanctionDto}">
+                    <div class="row">
+                      <div class="col-md-2">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">Branch Code</label>
+                          <input type="text" th:field="*{branchId}" name="branchId" class="form-control">
+                        </div>
+                      </div>
+                      <div class="col-md-2">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">Product Code</label>
+                          <input type="text" th:field="*{bankProductId}" name="bankProductId" class="form-control">
+                        </div>
+                      </div>
+                      <div class="col-md-3">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">Account</label>
+                          <input type="text" th:field="*{accountId}" name="accountId" class="form-control">
+                        </div>
+                      </div>
+                      <div class="col-md-3">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">Deposited Amount</label>
+                          <input type="text" th:field="*{depositedAmount}" name="depositedAmount" class="form-control">
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="card">
+                      <div class="card-header card-header-success">
+                        <h4 class="card-title">Depositor Information</h4>
+                        <p class="card-category">details information of accounter holder</p>
+                      </div>
+                      <div class="card-body">
+                          <div class="row">
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                <label class="bmd-label-floating">Fist Name</label>
+                                <input type="text" class="form-control" th:value="${account?.getCustomerId()?.getProfileId()?.getFirstName()}" value="Biswajit" disabled="disabled">
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                <label class="bmd-label-floating">Last Name</label>
+                                <input type="text" class="form-control" th:value="${account?.getCustomerId()?.getProfileId()?.getLastName()}" disabled="disabled">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-md-4">
+                              <div class="form-group">
+                                <label class="bmd-label-floating">Contact</label>
+                                <input type="text" class="form-control" th:value="${account?.getCustomerId()?.getProfileId()?.getMobileNumber()}" value="+8801937595521" disabled="disabled">
+                              </div>
+                            </div>
+                            <div class="col-md-4">
+                              <div class="form-group">
+                                <label class="bmd-label-floating">National ID</label>
+                                <input type="text" class="form-control" th:value="${account?.getCustomerId()?.getProfileId()?.getNationalId()}" value="2355378998" disabled="disabled">
+                              </div>
+                            </div>
+                            <div class="col-md-4">
+                              <div class="form-group">
+                                <label class="bmd-label-floating">Date of Birth</label>
+                                <input type="text" class="form-control" th:value="${account?.getCustomerId()?.getProfileId()?.getDateOfBirth()}" value="27/12/1994" disabled="disabled">
+                              </div>
+                            </div>
+                          </div>
+                      </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary pull-right">Confirm Deposit</button>
+                    <a  th:href="@{/}" class="btn btn-danger pull-right">Cancel</a>
+                    <div class="clearfix"></div>
+                  </form>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <th:block th:replace="common/footer :: footer"></th:block>
+    </div>
+  </div>
+  <th:block th:replace="common/footer-plugins :: footer-plugins"></th:block>
+  <th:block th:replace="common/footer-lib :: footerlib"></th:block>
+</body>
+
+</html>
