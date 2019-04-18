@@ -37,4 +37,14 @@ public class AccountTransanctionHistoryDto {
     public void setDepositedAmount(Float depositedAmount) {
         this.depositedAmount = depositedAmount;
     }
+
+    @Override
+    public String toString() {
+        return "AccountTransanctionHistoryDto{" +
+                "branchId=" + branchId +
+                ", bankProductId=" + bankProductId +
+                ", accountId=" + accountId +
+                ", depositedAmount=" + depositedAmount +
+                '}';
+    }
 }

@@ -24,15 +24,11 @@ public class LoginController {
 
     @PostMapping("/login")
     public String doLogin(UserAccount loginUser, HttpSession session){
-        System.out.println("login user");
-        System.out.println(loginUser);
         UsernamePasswordAuthenticationToken authentication =
                 (UsernamePasswordAuthenticationToken)
                         SecurityContextHolder.getContext().getAuthentication();
         validatePrinciple(authentication.getPrincipal());
         SystemUser loggedInUser = ((SystemUser) authentication.getPrincipal()).getUserDetails();
-        System.out.println("loggedInUser");
-        System.out.println(loggedInUser);
         session.setAttribute("loginUserId", loggedInUser.getId());
         return "redirect:/";
     }
@@ -45,7 +41,6 @@ public class LoginController {
     }
 
     private void validatePrinciple(Object principal) {
-        System.out.println("Validate Principal");
         if (!(principal instanceof SystemUser)) {
             throw new  IllegalArgumentException("Principal can not be null!");
         }

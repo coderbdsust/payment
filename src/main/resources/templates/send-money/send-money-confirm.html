@@ -1,0 +1,211 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+    <title>
+        User
+    </title>
+    <th:block th:replace="common/header :: header"></th:block>
+</head>
+
+<body class="">
+<div class="wrapper ">
+    <div class="sidebar" data-color="purple" data-background-color="white" data-image="../assets/img/sidebar-1.jpg">
+        <th:block th:replace="common/sidebar :: sidebar"></th:block>
+    </div>
+    <div class="main-panel">
+        <th:block th:replace="common/navbar :: navbar"></th:block>
+        <div class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="card">
+                        <div class="card-header card-header-primary">
+                            <h4 class="card-title">Money Transfer</h4>
+                            <p class="card-category">account to account money transfer</p>
+                        </div>
+                        <div class="card-body">
+                            <form th:action="@{/account/transanction/send-money/confirm}" method="post"
+                                  th:object="${sendMoneyDto}">
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <label class="bmd-label-floating">Branch Code</label>
+                                                <input type="text" th:field="*{fromAccount.branchId}"
+                                                       name="fromAccount.branchId" class="form-control">
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label class="bmd-label-floating">Product Code</label>
+                                                <input type="text" th:field="*{fromAccount.bankProductId}"
+                                                       name="fromAccount.bankProductId" class="form-control">
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label class="bmd-label-floating">From Account Number</label>
+                                                <input type="text" th:field="*{fromAccount.accountId}"
+                                                       name="fromAccount.accountId" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <label class="bmd-label-floating">Branch Code</label>
+                                                <input type="text" th:field="*{toAccount.branchId}"
+                                                       name="toAccount.branchId" class="form-control">
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label class="bmd-label-floating">Product Code</label>
+                                                <input type="text" th:field="*{toAccount.bankProductId}"
+                                                       name="toAccount.bankProductId" class="form-control">
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label class="bmd-label-floating">To Account Number</label>
+                                                <input type="text" th:field="*{toAccount.accountId}"
+                                                       name="toAccount.accounId" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label class="bmd-label-floating">Amount</label>
+                                            <input type="text" th:field="*{sendingAmount}" name="sendingAmount"
+                                                   class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="card">
+                                            <div class="card-header card-header-success">
+                                                <h4 class="card-title">Sender</h4>
+                                                <p class="card-category">sender information</p>
+                                            </div>
+                                            <div class="card-body">
+
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label class="bmd-label-floating">Fist Name</label>
+                                                            <input type="text" class="form-control"
+                                                                   th:value="${fromAccount?.customerId?.profileId?.firstName}"
+                                                                   disabled="disabled">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label class="bmd-label-floating">Last Name</label>
+                                                            <input type="text" class="form-control"
+                                                                   th:value="${fromAccount?.customerId?.profileId?.lastName}"
+                                                                   disabled="disabled">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label class="bmd-label-floating">Contact</label>
+                                                            <input type="text" class="form-control"
+                                                                   value="+8801937595521"
+                                                                   th:value="${fromAccount?.customerId?.profileId?.mobileNumber}"
+                                                                   disabled="disabled">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label class="bmd-label-floating">National ID</label>
+                                                            <input type="text" class="form-control" value="2355378998"
+                                                                   th:value="${fromAccount?.customerId?.profileId?.nationalId}"
+                                                                   disabled="disabled">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label class="bmd-label-floating">Date of Birth</label>
+                                                            <input type="text" class="form-control" value="27/12/1994"
+                                                                   th:value="${fromAccount?.customerId?.profileId?.dateOfBirth}"
+                                                                   disabled="disabled">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="card">
+                                            <div class="card-header card-header-success">
+                                                <h4 class="card-title">Receiver</h4>
+                                                <p class="card-category">receiver information</p>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label class="bmd-label-floating">Fist Name</label>
+                                                            <input type="text" class="form-control" value="Biswajit"
+                                                                   th:value="${toAccount?.customerId?.profileId?.firstName}"
+                                                                   disabled="disabled">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label class="bmd-label-floating">Last Name</label>
+                                                            <input type="text" class="form-control" value="Debnath"
+                                                                   th:value="${toAccount?.customerId?.profileId?.lastName}"
+                                                                   disabled="disabled">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label class="bmd-label-floating">Contact</label>
+                                                            <input type="text" class="form-control"
+                                                                   value="+8801937595521"
+                                                                   th:value="${toAccount?.customerId?.profileId?.mobileNumber}"
+                                                                   disabled="disabled">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label class="bmd-label-floating">National ID</label>
+                                                            <input type="text" class="form-control" value="2355378998"
+                                                                   th:value="${toAccount?.customerId?.profileId?.nationalId}"
+                                                                   disabled="disabled">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label class="bmd-label-floating">Date of Birth</label>
+                                                            <input type="text" class="form-control" value="27/12/1994"
+                                                                   th:value="${toAccount?.customerId?.profileId?.dateOfBirth}"
+                                                                   disabled="disabled">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-primary pull-right">Send Money</button>
+                                <a class="btn btn-danger pull-right" th:href="@{/}">Cancel</a>
+                                <div class="clearfix"></div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<th:block th:replace="common/footer :: footer"></th:block>
+</div>
+</div>
+<th:block th:replace="common/footer-plugins :: footer-plugins"></th:block>
+<th:block th:replace="common/footer-lib :: footerlib"></th:block>
+</body>
+
+</html>

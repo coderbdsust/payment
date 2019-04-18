@@ -3,11 +3,12 @@ package com.dbbl.payment.security;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
 
-//@EnableWebSecurity
+@EnableWebSecurity
 public class WebSecurityConfigAdapter extends WebSecurityConfigurerAdapter {
     @Autowired
     private Authenticator authenticator;
@@ -17,11 +18,20 @@ public class WebSecurityConfigAdapter extends WebSecurityConfigurerAdapter {
         auth.authenticationProvider(authenticator);
     }
 
+    @Override
+    public void configure(WebSecurity web) throws Exception {
+        web.ignoring()
+                .antMatchers("/assets/**", "/customs/**");
+    }
+
     protected void configure(HttpSecurity http) throws Exception {
+
         http.csrf().disable().authorizeRequests()
+                .antMatchers("/admin/**").hasAuthority("ADMIN")
                 .anyRequest().authenticated()
                 .and()
                  .formLogin()
+                .loginProcessingUrl("/login")
                 .loginPage("/login").permitAll()
                  .and()
                 .logout().logoutUrl("/logout")

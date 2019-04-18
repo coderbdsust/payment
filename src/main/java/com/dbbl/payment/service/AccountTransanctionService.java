@@ -1,6 +1,7 @@
 package com.dbbl.payment.service;
 
 import com.dbbl.payment.dto.AccountTransanctionHistoryDto;
+import com.dbbl.payment.dto.SendMoneyDto;
 import com.dbbl.payment.model.Account;
 import com.dbbl.payment.model.AccountTransanctionHistory;
 import com.dbbl.payment.repository.AccountRepository;
@@ -50,6 +51,50 @@ public class AccountTransanctionService implements IAccountTransanctionService{
         Optional<Account> accountOptional = accountRepository.findById(accountId);
         if(accountOptional.isPresent())
             return accountTransanctionHistoryRepository.findAccountTransanctionHistoriesByAccountId(accountOptional.get());
+        throw new AccountNumberNotFoundException("Account number not found");
+    }
+
+    @Override
+    @Transactional
+    public AccountTransanctionHistory doSendMoneyTransanction(SendMoneyDto dto) throws AccountNumberNotFoundException, InSufficientBalanceException {
+        Optional<Account> fromAccountOpt = accountRepository.findById(dto.getFromAccount().getAccountId());
+        Optional<Account> toAccountOpt = accountRepository.findById(dto.getToAccount().getAccountId());
+
+        if(fromAccountOpt.isPresent() && toAccountOpt.isPresent()){
+
+            Account fromAccount = fromAccountOpt.get();
+            Account toAccount = toAccountOpt.get();
+
+            if(fromAccount.getBalance()-dto.getSendingAmount()<0){
+                throw new InSufficientBalanceException("Sender account doesn't have sufficient balance");
+            }
+
+            AccountTransanctionHistory fromTnxHistory = new AccountTransanctionHistory();
+            fromTnxHistory.setAccountId(fromAccount);
+            fromTnxHistory.setDebitAmount(dto.getSendingAmount());
+            fromTnxHistory.setFromAccount(fromAccount.getBranchId()+"."+fromAccount.getBankProductId()+"."+fromAccount.getId());
+            fromTnxHistory.setToAccount(toAccount.getBranchId()+"."+toAccount.getBankProductId()+"."+toAccount.getId());
+            fromTnxHistory.setTransanctionDate(new Date());
+            fromTnxHistory.setTransanctionType("Send Money");
+            fromTnxHistory = accountTransanctionHistoryRepository.save(fromTnxHistory);
+
+            AccountTransanctionHistory toTnxHistory = new AccountTransanctionHistory();
+            toTnxHistory.setAccountId(toAccount);
+            toTnxHistory.setCreditAmount(dto.getSendingAmount());
+            toTnxHistory.setFromAccount(fromAccount.getBranchId()+"."+fromAccount.getBankProductId()+"."+fromAccount.getId());
+            toTnxHistory.setToAccount(toAccount.getBranchId()+"."+toAccount.getBankProductId()+"."+toAccount.getId());
+            toTnxHistory.setTransanctionDate(new Date());
+            toTnxHistory.setTransanctionType("Send Money");
+            toTnxHistory = accountTransanctionHistoryRepository.save(toTnxHistory);
+
+            fromAccount.setBalance(fromAccount.getBalance()-dto.getSendingAmount());
+            toAccount.setBalance(toAccount.getBalance()+dto.getSendingAmount());
+
+            accountRepository.save(fromAccount);
+            accountRepository.save(toAccount);
+
+            return fromTnxHistory;
+        }
         throw new AccountNumberNotFoundException("Account number not found");
     }
 }
