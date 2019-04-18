@@ -1,5 +1,6 @@
 package com.dbbl.payment.service;
 
+import com.dbbl.payment.constants.ProfileType;
 import com.dbbl.payment.dto.UserAccountDto;
 import com.dbbl.payment.model.Profile;
 import com.dbbl.payment.model.UserAccount;
@@ -30,48 +31,44 @@ public class UserAccountService implements IUserAccountService {
 
     public List<UserAccount> findAll() {
         List<UserAccount> users = userAccountRepository.findAll();
-        for(UserAccount u:users){
+        for (UserAccount u : users) {
             System.out.println(u);
         }
         return users;
     }
 
     @Transactional
-    public UserAccount createOrUpdateSystemUser(UserAccountDto userAccountDTO) {
+    public UserAccount createSystemUser(UserAccountDto userAccountDTO) {
+        Profile profile = new Profile();
+        profile.setFirstName(userAccountDTO.getFirstName());
+        profile.setLastName((userAccountDTO.getLastName()));
+        profile.setMobileNumber(userAccountDTO.getContact());
+        profile.setEmail(userAccountDTO.getEmail());
+        profile.setCreatedDate(new Date());
+        profile.setUpdatedDate(new Date());
+        profile.setProfileType(ProfileType.USER_PROFILE);
+        profile = profileRepository.save(profile);
+        UserAccount user = new UserAccount();
+        user.setEmail(userAccountDTO.getEmail());
+        user.setPassword(userAccountDTO.getPassword());
+        user.setProfileId(profile);
+        user = userAccountRepository.save(user);
 
-        if(userAccountDTO.getId()==null) {
-            Profile profile = new Profile();
-            profile.setFirstName(userAccountDTO.getFirstName());
-            profile.setLastName((userAccountDTO.getLastName()));
-            profile.setMobileNumber(userAccountDTO.getContact());
-            profile.setEmail(userAccountDTO.getEmail());
-            profile.setCreatedDate(new Date());
-            profile.setUpdatedDate(new Date());
-            profile = profileRepository.save(profile);
-
-            UserAccount user = new UserAccount();
-            user.setEmail(userAccountDTO.getEmail());
-            user.setPassword(userAccountDTO.getPassword());
-            user.setProfileId(profile);
-            user = userAccountRepository.save(user);
-
-            Set<UserRole> roles = RoleConversion.convertRole(userAccountDTO.getRoleName(), user);
-            for (UserRole userRole : roles) {
-                userRoleRepository.save(userRole);
-            }
-            return user;
+        Set<UserRole> roles = RoleConversion.convertRole(userAccountDTO.getRoleName(), user);
+        for (UserRole userRole : roles) {
+            userRoleRepository.save(userRole);
         }
-        return null;
+        return user;
     }
 
-    public void deleteSystemUserById(Long id){
-         userAccountRepository.deleteById(id);
+    public void deleteSystemUserById(Long id) {
+        userAccountRepository.deleteById(id);
     }
 
     @Override
     public void disableAdminUser(Long id) {
-        Optional<UserAccount> result= userAccountRepository.findById(id);
-        if(result.isPresent()){
+        Optional<UserAccount> result = userAccountRepository.findById(id);
+        if (result.isPresent()) {
             UserAccount userAccount = result.get();
             userAccount.setEnabled(!userAccount.getEnabled());
             userAccountRepository.save(userAccount);

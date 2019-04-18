@@ -10,7 +10,7 @@ public interface IUserAccountService {
 
     public List<UserAccount> findAll();
 
-    public UserAccount createOrUpdateSystemUser(UserAccountDto userAccountDTO);
+    public UserAccount createSystemUser(UserAccountDto userAccountDTO);
 
     public void deleteSystemUserById(Long id);
 

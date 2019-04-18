@@ -1,6 +1,7 @@
 package com.dbbl.payment.service;
 
 import com.dbbl.payment.constants.AddressType;
+import com.dbbl.payment.constants.ProfileType;
 import com.dbbl.payment.dto.AccountTransanctionHistoryDto;
 import com.dbbl.payment.dto.CustomerDto;
 import com.dbbl.payment.model.Account;
@@ -35,7 +36,8 @@ public class AccountService implements IAccountService {
     @Transactional
     public Customer createAccount(CustomerDto customerDto) {
 
-        Profile previousProfile = profileRepository.findByNationalId(customerDto.getProfile().getNationalId());
+        Profile previousProfile = profileRepository
+                .findByNationalIdAndProfileType(customerDto.getProfile().getNationalId(), ProfileType.BANK_PROFILE);
         if (previousProfile == null) {
             Address presentAddress = customerDto.getPresentAddress();
             presentAddress.setAddressType(AddressType.PRESENT);
@@ -49,6 +51,7 @@ public class AccountService implements IAccountService {
             Profile profile = customerDto.getProfile();
             profile.setCreatedDate(new Date());
             profile.setUpdatedDate(new Date());
+            profile.setProfileType(ProfileType.BANK_PROFILE);
             profileRepository.save(profile);
             Customer customer = new Customer();
             customer.setActive(true);

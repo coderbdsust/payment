@@ -27,30 +27,30 @@
                   <p class="card-category">Your complete profile</p>
                 </div>
                 <div class="card-body">
-                  <form th:object="${profile}">
+                  <form th:object="${profileViewDto}">
                     <div class="row">
                       <div class="col-md-3">
                         <div class="form-group">
                           <label class="bmd-label-floating">First Name</label>
-                          <input type="text" th:field="*{firstName}" class="form-control" disabled>
+                          <input type="text" th:field="*{profile.firstName}" class="form-control" disabled>
                         </div>
                       </div>
                       <div class="col-md-3">
                         <div class="form-group">
                           <label class="bmd-label-floating">Last Name</label>
-                          <input type="text" th:field="*{lastName}" class="form-control" disabled>
+                          <input type="text" th:field="*{profile.lastName}" class="form-control" disabled>
                         </div>
                       </div>
                       <div class="col-md-3">
                         <div class="form-group">
                           <label class="bmd-label-floating">Date of Birth</label>
-                          <input type="text" th:field="*{dateOfBirth}" class="form-control" disabled>
+                          <input type="text" th:field="*{profile.dateOfBirth}" class="form-control" disabled>
                         </div>
                       </div>
                       <div class="col-md-3">
                         <div class="form-group">
                           <label class="bmd-label-floating">Contact</label>
-                          <input type="text" th:field="*{mobileNumber}" class="form-control" disabled>
+                          <input type="text" th:field="*{profile.mobileNumber}" class="form-control" disabled>
                         </div>
                       </div>
                     </div>
@@ -58,19 +58,19 @@
                       <div class="col-md-6">
                         <div class="form-group">
                           <label class="bmd-label-floating">Email</label>
-                          <input type="text" th:field="*{email}" class="form-control" disabled>
+                          <input type="text" th:field="*{profile.email}" class="form-control" disabled>
                         </div>
                       </div>
                       <div class="col-md-3">
                         <div class="form-group">
                           <label class="bmd-label-floating">Occupation</label>
-                          <input type="text" th:field="*{occupation}" class="form-control" disabled>
+                          <input type="text" th:field="*{profile.occupation}" class="form-control" disabled>
                         </div>
                       </div>
                       <div class="col-md-3">
                         <div class="form-group">
                           <label class="bmd-label-floating">Designation</label>
-                          <input type="text" th:field="*{designation}" class="form-control" disabled>
+                          <input type="text" th:field="*{profile.designation}" class="form-control" disabled>
                         </div>
                       </div>
                     </div>
@@ -78,23 +78,206 @@
                       <div class="col-md-4">
                         <div class="form-group">
                           <label class="bmd-label-floating">National ID</label>
-                          <input type="text" th:field="*{nationalId}" class="form-control" disabled>
+                          <input type="text" th:field="*{profile.nationalId}" class="form-control" disabled>
                         </div>
                       </div>
                       <div class="col-md-4">
                         <div class="form-group">
                           <label class="bmd-label-floating">Passport ID</label>
-                          <input type="text" th:field="*{passportId}" class="form-control" disabled>
+                          <input type="text" th:field="*{profile.passportId}" class="form-control" disabled>
                         </div>
                       </div>
                       <div class="col-md-4">
                         <div class="form-group">
                           <label class="bmd-label-floating">Tin Number</label>
-                          <input type="text" th:field="*{tinNumber}" class="form-control" disabled>
+                          <input type="text" th:field="*{profile.tinNumber}" class="form-control" disabled>
                         </div>
                       </div>
                     </div>
-                    <a th:href="@{/profile/edit}" class="btn btn-primary pull-right">Edit Profile</a>
+                    <div class="row">
+                      <div class="card">
+                        <div class="card-header card-header-info">
+                          <h4 class="card-title">Present Address</h4>
+                        </div>
+                        <div class="card-body">
+                          <div class="row">
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                <label class="bmd-label-floating">Road No</label>
+                                <input type="text" th:field="*{presentAddress.roadNo}" class="form-control" disabled>
+                                <span th:if="${#fields.hasErrors('presentAddress.roadNo')}" th:errors="*{presentAddress.roadNo}" class="text-danger">Road no is required</span>
+
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                <label class="bmd-label-floating">House No</label>
+                                <input type="text" th:field="*{presentAddress.houseNo}" class="form-control" disabled>
+                                <span th:if="${#fields.hasErrors('presentAddress.houseNo')}" th:errors="*{presentAddress.houseNo}" class="text-danger">House no is required</span>
+
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-md-3">
+                              <div class="form-group">
+                                <label class="bmd-label-floating">City</label>
+                                <input type="text" th:field="*{presentAddress.city}" class="form-control" disabled>
+                                <span th:if="${#fields.hasErrors('presentAddress.city')}" th:errors="*{presentAddress.city}" class="text-danger">City is required</span>
+
+                              </div>
+                            </div>
+                            <div class="col-md-3">
+                              <div class="form-group">
+                                <label class="bmd-label-floating">Postal Code</label>
+                                <input type="text" th:field="*{presentAddress.postCode}" class="form-control" disabled>
+                                <span th:if="${#fields.hasErrors('presentAddress.postCode')}" th:errors="*{presentAddress.postCode}" class="text-danger">Post code is required</span>
+
+                              </div>
+                            </div>
+                            <div class="col-md-3">
+                              <div class="form-group">
+                                <label class="bmd-label-floating">Country</label>
+                                <input type="text" th:field="*{presentAddress.country}" class="form-control" disabled>
+                                <span th:if="${#fields.hasErrors('presentAddress.country')}" th:errors="*{presentAddress.country}" class="text-danger">Country is required</span>
+
+                              </div>
+                            </div>
+                            <div class="col-md-3">
+                              <div class="form-group">
+                                <label class="bmd-label-floating">Contact</label>
+                                <input type="text" th:field="*{presentAddress.contact}" class="form-control" disabled>
+                                <span th:if="${#fields.hasErrors('presentAddress.contact')}" th:errors="*{presentAddress.contact}" class="text-danger">Contact is required</span>
+                              </div>
+                            </div>
+                          </div>
+
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="card">
+                        <div class="card-header card-header-info">
+                          <h4 class="card-title">Parmanent Address</h4>
+                        </div>
+                        <div class="card-body">
+                          <div class="row">
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                <label class="bmd-label-floating">Road No</label>
+                                <input type="text" th:field="*{parmanentAddress.roadNo}" class="form-control" disabled>
+                                <span th:if="${#fields.hasErrors('parmanentAddress.roadNo')}" th:errors="*{parmanentAddress.roadNo}" class="text-danger">Road no is required</span>
+
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                <label class="bmd-label-floating">House No</label>
+                                <input type="text" th:field="*{parmanentAddress.houseNo}" class="form-control" disabled>
+                                <span th:if="${#fields.hasErrors('parmanentAddress.houseNo')}" th:errors="*{parmanentAddress.houseNo}" class="text-danger">House no is required</span>
+
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-md-3">
+                              <div class="form-group">
+                                <label class="bmd-label-floating">City</label>
+                                <input type="text" th:field="*{parmanentAddress.city}" class="form-control" disabled>
+                                <span th:if="${#fields.hasErrors('parmanentAddress.city')}" th:errors="*{parmanentAddress.city}" class="text-danger">City is required</span>
+
+                              </div>
+                            </div>
+                            <div class="col-md-3">
+                              <div class="form-group">
+                                <label class="bmd-label-floating">Postal Code</label>
+                                <input type="text" th:field="*{parmanentAddress.postCode}" class="form-control" disabled>
+                                <span th:if="${#fields.hasErrors('parmanentAddress.postCode')}" th:errors="*{parmanentAddress.postCode}" class="text-danger">Post code is required</span>
+
+                              </div>
+                            </div>
+                            <div class="col-md-3">
+                              <div class="form-group">
+                                <label class="bmd-label-floating">Country</label>
+                                <input type="text" th:field="*{parmanentAddress.country}" class="form-control" disabled>
+                                <span th:if="${#fields.hasErrors('parmanentAddress.country')}" th:errors="*{parmanentAddress.country}" class="text-danger">Country is required</span>
+
+                              </div>
+                            </div>
+                            <div class="col-md-3">
+                              <div class="form-group">
+                                <label class="bmd-label-floating">Contact</label>
+                                <input type="text" th:field="*{parmanentAddress.contact}" class="form-control" disabled>
+                                <span th:if="${#fields.hasErrors('parmanentAddress.contact')}" th:errors="*{parmanentAddress.contact}" class="text-danger">Contact is required</span>
+                              </div>
+                            </div>
+                          </div>
+
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="card">
+                        <div class="card-header card-header-info">
+                          <h4 class="card-title">Official Address</h4>
+                        </div>
+                        <div class="card-body">
+                          <div class="row">
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                <label class="bmd-label-floating">Road No</label>
+                                <input type="text" th:field="*{officeAddress.roadNo}" class="form-control" disabled>
+                                <span th:if="${#fields.hasErrors('officeAddress.roadNo')}" th:errors="*{officeAddress.roadNo}" class="text-danger">Road no is required</span>
+
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                <label class="bmd-label-floating">House No</label>
+                                <input type="text" th:field="*{officeAddress.houseNo}" class="form-control" disabled>
+                                <span th:if="${#fields.hasErrors('officeAddress.houseNo')}" th:errors="*{officeAddress.houseNo}" class="text-danger">House no is required</span>
+
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-md-3">
+                              <div class="form-group">
+                                <label class="bmd-label-floating">City</label>
+                                <input type="text" th:field="*{officeAddress.city}" class="form-control" disabled>
+                                <span th:if="${#fields.hasErrors('officeAddress.city')}" th:errors="*{officeAddress.city}" class="text-danger">City is required</span>
+
+                              </div>
+                            </div>
+                            <div class="col-md-3">
+                              <div class="form-group">
+                                <label class="bmd-label-floating">Postal Code</label>
+                                <input type="text" th:field="*{officeAddress.postCode}" class="form-control" disabled>
+                                <span th:if="${#fields.hasErrors('officeAddress.postCode')}" th:errors="*{officeAddress.postCode}" class="text-danger">Post code is required</span>
+
+                              </div>
+                            </div>
+                            <div class="col-md-3">
+                              <div class="form-group">
+                                <label class="bmd-label-floating">Country</label>
+                                <input type="text" th:field="*{officeAddress.country}" class="form-control" disabled>
+                                <span th:if="${#fields.hasErrors('officeAddress.country')}" th:errors="*{officeAddress.country}" class="text-danger">Country is required</span>
+
+                              </div>
+                            </div>
+                            <div class="col-md-3">
+                              <div class="form-group">
+                                <label class="bmd-label-floating">Contact</label>
+                                <input type="text" th:field="*{officeAddress.contact}" class="form-control" disabled>
+                                <span th:if="${#fields.hasErrors('officeAddress.contact')}" th:errors="*{officeAddress.contact}" class="text-danger">Contact is required</span>
+                              </div>
+                            </div>
+                          </div>
+
+                        </div>
+                      </div>
+                    </div>
+                    <a th:href="@{/profile/edit}" class="btn btn-primary pull-right">Edit Your Profile</a>
                     <div class="clearfix"></div>
                   </form>
                 </div>
@@ -108,8 +291,8 @@
                   </a>
                 </div>
                 <div class="card-body">
-                  <h6 class="card-category text-gray" th:text="${profile.designation}">CEO / Co-Founder</h6>
-                  <h4 class="card-title" th:text="${profile.firstName+' '+profile.lastName}">Biswajit Debnath</h4>
+                  <h6 class="card-category text-gray" th:text="${profileViewDto.profile.designation}">CEO / Co-Founder</h6>
+                  <h4 class="card-title" th:text="${profileViewDto.profile.firstName+' '+profileViewDto.profile.lastName}">Biswajit Debnath</h4>
                 </div>
               </div>
             </div>

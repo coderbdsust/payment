@@ -21,10 +21,8 @@ public class LoginController {
     @GetMapping("/login")
     public String loginPage(Model model, Principal principal){
         if(principal!=null){
-            System.out.println(principal);
             return "redirect:/";
         }
-
         model.addAttribute("loginUser", new UserAccountDto());
         return "login";
     }

@@ -1,50 +1,56 @@
 package com.dbbl.payment.controller;
 
+import com.dbbl.payment.dto.ProfileViewDto;
 import com.dbbl.payment.model.Profile;
 import com.dbbl.payment.model.UserAccount;
 import com.dbbl.payment.repository.ProfileRepository;
 import com.dbbl.payment.repository.UserAccountRepository;
+import com.dbbl.payment.service.ProfileService;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.naming.Binding;
+import javax.validation.Valid;
+import java.lang.reflect.Field;
 import java.security.Principal;
 
 @Controller
 public class ProfileController {
 
-    @Autowired
-    ProfileRepository profileRepository;
 
     @Autowired
-    UserAccountRepository userAccountRepository;
+    ProfileService profileService;
 
 
     @GetMapping("/profile")
     public String showProfile(Model model, Principal principal) {
         String username = principal.getName();
-        UserAccount account = userAccountRepository.getUserAccountByEmail(username);
-        Profile profile = account.getProfileId();
-        model.addAttribute("profile", profile);
+        ProfileViewDto profileViewDto = profileService.getUserAccountProfile(username);
+        model.addAttribute("profileViewDto", profileViewDto);
         return "profile/profile";
     }
 
     @GetMapping("/profile/edit")
     public String editProfile(Model model, Principal principal) {
         String username = principal.getName();
-        UserAccount account = userAccountRepository.getUserAccountByEmail(username);
-        Profile profile = account.getProfileId();
-        model.addAttribute("profile", profile);
+        ProfileViewDto profileViewDto = profileService.getUserAccountProfile(username);
+        model.addAttribute("profileViewDto", profileViewDto);
         return "profile/edit";
     }
 
     @PostMapping("/profile")
-    public String saveProfile(Profile profile){
-        if(!profile.getNationalId().startsWith("NID:"))
-            profile.setNationalId("NID:"+profile.getNationalId());
-        Profile profileRes = profileRepository.save(profile);
+    public String saveProfile(@Valid ProfileViewDto profileViewDto, BindingResult errors){
+        if(errors.hasErrors()){
+            return "profile/edit";
+        }
+        Profile profileRes = profileService.saveOrUpdateUserAccountProfile(profileViewDto);
         return "redirect:/profile";
     }
 }

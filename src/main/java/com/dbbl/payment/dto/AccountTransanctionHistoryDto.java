@@ -1,6 +1,7 @@
 package com.dbbl.payment.dto;
 
 public class AccountTransanctionHistoryDto {
+
     private Long branchId;
     private Long bankProductId;
     private Long accountId;

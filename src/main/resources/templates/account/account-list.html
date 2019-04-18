@@ -81,7 +81,7 @@
                                         </thead>
                                         <tbody>
                                         <tr th:each="acc:${accounts}">
-                                            <td th:text="${acc.getId()}">
+                                            <td th:text="${acc.customerId.getId()}">
                                                 101102500
                                             </td>
                                             <td th:text="${acc?.getCustomerId()?.getProfileId()?.getFirstName()+' '+acc?.getCustomerId()?.getProfileId()?.getLastName()}">

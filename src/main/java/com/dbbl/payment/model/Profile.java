@@ -1,5 +1,6 @@
 package com.dbbl.payment.model;
 
+import com.dbbl.payment.constants.ProfileType;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -60,6 +61,7 @@ public class Profile {
     private String nationalId;
     private String passportId;
     private String tinNumber;
+    private ProfileType profileType;
     private Long createdBy;
     @Temporal(value = TemporalType.DATE)
     private Date createdDate;
@@ -68,7 +70,6 @@ public class Profile {
     private Date updatedDate;
     @JsonIgnore
     @OneToMany(mappedBy = "profileId", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @Transient
     private Set<Address> addresses;
 
     public Long getId() {
@@ -213,6 +214,14 @@ public class Profile {
 
     public void setAddresses(Set<Address> addresses) {
         this.addresses = addresses;
+    }
+
+    public ProfileType getProfileType() {
+        return profileType;
+    }
+
+    public void setProfileType(ProfileType profileType) {
+        this.profileType = profileType;
     }
 
     @Override

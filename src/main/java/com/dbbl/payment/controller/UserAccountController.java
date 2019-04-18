@@ -37,7 +37,7 @@ public class UserAccountController {
             return "admin/admin-user-create";
         }
 
-        UserAccount userAccount = userAccountService.createOrUpdateSystemUser(user);
+        UserAccount userAccount = userAccountService.createSystemUser(user);
         return "redirect:/admin/user";
     }
 
