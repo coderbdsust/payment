@@ -19,6 +19,14 @@
             <div class="col-md-8">
                 <h1>Oops, Something terribly wrong!</h1>
                 <br/>
+                <p th:text="${timestamp}"></p>
+
+                <p th:text="${path}"></p>
+
+                <p th:text="${error}"></p>
+
+                <p th:text="${status}"></p>
+
                 <a th:href="@{/}" class="btn btn-primary">Go Back</a>
             </div>
         </div>
