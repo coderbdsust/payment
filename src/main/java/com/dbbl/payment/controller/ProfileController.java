@@ -42,6 +42,8 @@ public class ProfileController {
 
     @PostMapping("/profile")
     public String saveProfile(Profile profile){
+        if(!profile.getNationalId().startsWith("NID:"))
+            profile.setNationalId("NID:"+profile.getNationalId());
         Profile profileRes = profileRepository.save(profile);
         return "redirect:/profile";
     }
