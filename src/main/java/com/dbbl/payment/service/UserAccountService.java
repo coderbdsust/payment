@@ -61,7 +61,13 @@ public class UserAccountService implements IUserAccountService {
         return user;
     }
 
-    public void deleteSystemUserById(Long id) {
+    public void deleteSystemUserById(Long id, String currentUser) throws SelfUserDelectException{
+        Optional<UserAccount> userAccount = userAccountRepository.findById(id);
+        if(userAccount.isPresent()) {
+            if(userAccount.get().getEmail().equals(currentUser)){
+                throw new SelfUserDelectException("Self user can't be deleted exception");
+            }
+        }
         userAccountRepository.deleteById(id);
     }
 

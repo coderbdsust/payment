@@ -12,7 +12,7 @@ public interface IUserAccountService {
 
     public UserAccount createSystemUser(UserAccountDto userAccountDTO);
 
-    public void deleteSystemUserById(Long id);
+    public void deleteSystemUserById(Long id, String loginUser) throws SelfUserDelectException;
 
     public void disableAdminUser(Long id);
 }

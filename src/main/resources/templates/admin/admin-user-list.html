@@ -4,110 +4,119 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 
 <head>
-  <title>
-    Tables
-  </title>
-  <th:block th:replace="common/header :: header"></th:block>
+    <title>
+        Tables
+    </title>
+    <th:block th:replace="common/header :: header"></th:block>
 </head>
 
 <body class="">
-  <div class="wrapper ">
+<div class="wrapper ">
     <div class="sidebar" data-color="purple" data-background-color="white" data-image="../assets/img/sidebar-1.jpg">
-      <th:block th:replace="common/sidebar :: sidebar"></th:block>
+        <th:block th:replace="common/sidebar :: sidebar"></th:block>
     </div>
     <div class="main-panel">
-      <th:block th:replace="common/navbar :: navbar"></th:block>
-      <div class="content">
-        <div class="container-fluid">
-          <div class="row">
-            <div class="col-md-12">
-              <div class="card">
-                <div class="card-header card-header-primary">
-                  <div class="row">
-                    <div class="col-md-8">
-                      <h4 class="card-title ">CBD Payment Users</h4>
-                      <p class="card-category">All available system users</p>
+        <th:block th:replace="common/navbar :: navbar"></th:block>
+        <div class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <th:block th:replace="common/alert :: alert-block"></th:block>
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header card-header-primary">
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <h4 class="card-title ">CBD Payment Users</h4>
+                                        <p class="card-category">All available system users</p>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <a class="btn btn-success pull-right" th:href="@{/admin/user/create}"><i
+                                                class="material-icons">add</i> Create System User</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table" id="table">
+                                        <thead class=" text-primary">
+                                        <th>
+                                            SID
+                                        </th>
+                                        <th>
+                                            Name
+                                        </th>
+                                        <th>
+                                            Email
+                                        </th>
+                                        <th>
+                                            Role
+                                        </th>
+                                        <th>
+                                            Creation Date
+                                        </th>
+                                        <th>
+                                            Active
+                                        </th>
+                                        <th>
+                                            Disable/Enable
+                                        </th>
+                                        <th>
+                                            Delete
+                                        </th>
+                                        </thead>
+                                        <tbody>
+                                        <tr th:each="item, idx : ${adminUsers}">
+                                            <td th:text="${idx.count}">
+                                                101
+                                            </td>
+                                            <td th:text="${item?.getProfileId()?.getFirstName()}">
+                                                Biswajit Debnath
+                                            </td>
+                                            <td th:text="${item?.getEmail()}">
+                                                bd@gmail.com
+                                            </td>
+                                            <td th:text="${(item.getUserRoles().size()==2)?'Admin':'User'}">
+                                                Admin
+                                            </td>
+                                            <td th:text="${item?.getProfileId()?.getCreatedDate()}">
+                                                April 14, 2019
+                                            </td>
+                                            <td
+                                                    th:classappend="${(item.getEnabled()==true) ? 'text-success' : 'text-danger'}"
+                                                    th:text="${item.getEnabled()==true?'Active':'Inactive'}">
+                                                active
+                                            </td>
+                                            <td>
+                                                <a class="btn btn-sm pull-center"
+                                                   th:classappend="${(item.getEnabled()==false) ? 'btn-success' : 'btn-danger'}"
+                                                   th:href="@{'/admin/user/activeorinactive/'+${item.id}}"
+                                                   th:text="${(item.getEnabled()==true) ? 'Disable' : 'Enable'}">Disable
+                                                    or Enable</a>
+                                            </td>
+                                            <td>
+                                                <a class="btn btn-danger btn-sm pull-center"
+                                                   th:href="@{'/admin/user/delete/'+${item.id}}">Delete</a>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-md-4">
-                      <a class="btn btn-success pull-right" th:href="@{/admin/user/create}"><i class="material-icons">add</i> Create System User</a>
-                    </div>
-                  </div>
                 </div>
-                <div class="card-body">
-                  <div class="table-responsive">
-                    <table class="table">
-                      <thead class=" text-primary">
-                        <th>
-                          SID
-                        </th>
-                        <th>
-                          Name
-                        </th>
-                        <th>
-                          Email
-                        </th>
-                        <th>
-                          Role
-                        </th>
-                        <th>
-                          Creation Date
-                        </th>
-                        <th>
-                          Active
-                        </th>
-                        <th>
-                          Disable/Enable
-                        </th>
-                        <th>
-                          Delete
-                        </th>
-                      </thead>
-                      <tbody>
-                        <tr th:each="item, idx : ${adminUsers}">
-                          <td th:text="${idx.count}">
-                            101
-                          </td>
-                          <td th:text="${item?.getProfileId()?.getFirstName()}">
-                            Biswajit Debnath
-                          </td>
-                          <td th:text="${item?.getEmail()}">
-                            bd@gmail.com
-                          </td>
-                          <td th:text="${(item.getUserRoles().size()==2)?'Admin':'User'}">
-                            Admin
-                          </td>
-                          <td th:text="${item?.getProfileId()?.getCreatedDate()}">
-                            April 14, 2019
-                          </td>
-                          <td
-                                  th:classappend="${(item.getEnabled()==true) ? 'text-success' : 'text-danger'}"
-                                  th:text="${item.getEnabled()==true?'Active':'Inactive'}">
-                           active
-                          </td>
-                          <td >
-                            <a class="btn btn-sm pull-center"
-                               th:classappend="${(item.getEnabled()==false) ? 'btn-success' : 'btn-danger'}"
-                               th:href="@{'/admin/user/activeorinactive/'+${item.id}}"
-                               th:text="${(item.getEnabled()==true) ? 'Disable' : 'Enable'}" >Disable or Enable</a>
-                          </td>
-                          <td >
-                            <a class="btn btn-danger btn-sm pull-center" th:href="@{'/admin/user/delete/'+${item.id}}">Delete</a>
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-              </div>
             </div>
-          </div>
         </div>
-      </div>
-      <th:block th:replace="common/footer :: footer"></th:block>
+        <th:block th:replace="common/footer :: footer"></th:block>
     </div>
-  </div>
-  <th:block th:replace="common/footer-plugins :: footer-plugins"></th:block>
-  <th:block th:replace="common/footer-lib :: footerlib"></th:block>
+</div>
+<th:block th:replace="common/footer-plugins :: footer-plugins"></th:block>
+<th:block th:replace="common/footer-lib :: footerlib"></th:block>
+<script>
+    $(document).ready( function () {
+    $('#table').DataTable();
+    } );
+</script>
 </body>
 
 </html>
