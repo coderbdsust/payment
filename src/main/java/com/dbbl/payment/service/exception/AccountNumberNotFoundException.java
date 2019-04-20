@@ -1,4 +1,4 @@
-package com.dbbl.payment.service;
+package com.dbbl.payment.service.exception;
 
 public class AccountNumberNotFoundException extends Throwable {
     public AccountNumberNotFoundException(String s) {

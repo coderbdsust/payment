@@ -1,7 +1,7 @@
 package com.dbbl.payment.controller;
 
 import com.dbbl.payment.constants.MessageType;
-import com.dbbl.payment.service.CustomerNotFoundException;
+import com.dbbl.payment.service.exception.CustomerNotFoundException;
 import com.dbbl.payment.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

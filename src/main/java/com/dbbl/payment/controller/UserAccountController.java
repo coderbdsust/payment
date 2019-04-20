@@ -4,7 +4,7 @@ import com.dbbl.payment.constants.MessageType;
 import com.dbbl.payment.dto.UserAccountDto;
 import com.dbbl.payment.model.UserAccount;
 import com.dbbl.payment.service.IUserAccountService;
-import com.dbbl.payment.service.SelfUserOperationException;
+import com.dbbl.payment.service.exception.SelfUserOperationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Controller;

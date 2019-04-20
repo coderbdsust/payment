@@ -8,6 +8,7 @@ import com.dbbl.payment.model.UserRole;
 import com.dbbl.payment.repository.ProfileRepository;
 import com.dbbl.payment.repository.UserAccountRepository;
 import com.dbbl.payment.repository.UserRoleRepository;
+import com.dbbl.payment.service.exception.SelfUserOperationException;
 import com.dbbl.payment.utils.RoleConversion;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
