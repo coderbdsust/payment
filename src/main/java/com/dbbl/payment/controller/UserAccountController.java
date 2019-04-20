@@ -4,8 +4,9 @@ import com.dbbl.payment.constants.MessageType;
 import com.dbbl.payment.dto.UserAccountDto;
 import com.dbbl.payment.model.UserAccount;
 import com.dbbl.payment.service.IUserAccountService;
-import com.dbbl.payment.service.SelfUserDelectException;
+import com.dbbl.payment.service.SelfUserOperationException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -57,17 +58,26 @@ public class UserAccountController {
     public String deleteAdminUser(@PathVariable Long id, Principal principal, RedirectAttributes redirectAttributes) {
         try {
             userAccountService.deleteSystemUserById(id, principal.getName());
-        }catch (SelfUserDelectException ex){
+        }catch (SelfUserOperationException ex){
             redirectAttributes.addAttribute("messageType", MessageType.ERROR);
-            redirectAttributes.addAttribute("message","Own account can't be deleted");
+            redirectAttributes.addAttribute("message", ex.getLocalizedMessage());
             return "redirect:/admin/user";
         }
         return "redirect:/admin/user";
     }
 
     @GetMapping("/admin/user/activeorinactive/{id}")
-    public String disableAdminUser(@PathVariable Long id) {
-        userAccountService.disableAdminUser(id);
+    public String disableAdminUser(@PathVariable Long id, Principal principal, RedirectAttributes redirectAttributes) {
+        try{
+            userAccountService.disableAdminUser(id, principal.getName());
+        }catch(UsernameNotFoundException e){
+            redirectAttributes.addAttribute("messageType", MessageType.ERROR);
+            redirectAttributes.addAttribute("message",e.getLocalizedMessage());
+        }catch (SelfUserOperationException e){
+            redirectAttributes.addAttribute("messageType", MessageType.ERROR);
+            redirectAttributes.addAttribute("message",e.getLocalizedMessage());
+        }
+
         return "redirect:/admin/user";
     }
 }

@@ -9,8 +9,8 @@ import com.dbbl.payment.repository.ProfileRepository;
 import com.dbbl.payment.repository.UserAccountRepository;
 import com.dbbl.payment.repository.UserRoleRepository;
 import com.dbbl.payment.utils.RoleConversion;
-import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -61,23 +61,28 @@ public class UserAccountService implements IUserAccountService {
         return user;
     }
 
-    public void deleteSystemUserById(Long id, String currentUser) throws SelfUserDelectException{
+    public void deleteSystemUserById(Long id, String currentUser) throws SelfUserOperationException {
         Optional<UserAccount> userAccount = userAccountRepository.findById(id);
         if(userAccount.isPresent()) {
             if(userAccount.get().getEmail().equals(currentUser)){
-                throw new SelfUserDelectException("Self user can't be deleted exception");
+                throw new SelfUserOperationException("Self user can't be deleted exception");
             }
         }
         userAccountRepository.deleteById(id);
     }
 
     @Override
-    public void disableAdminUser(Long id) {
+    public void disableAdminUser(Long id, String loginUser) throws SelfUserOperationException, UsernameNotFoundException {
         Optional<UserAccount> result = userAccountRepository.findById(id);
         if (result.isPresent()) {
+            if(result.get().getEmail().equals(loginUser)){
+                throw new SelfUserOperationException("Self user disable not possible");
+            }
             UserAccount userAccount = result.get();
             userAccount.setEnabled(!userAccount.getEnabled());
             userAccountRepository.save(userAccount);
+            return;
         }
+        throw new UsernameNotFoundException("User not found using id");
     }
 }
