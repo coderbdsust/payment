@@ -6,6 +6,7 @@ import com.dbbl.payment.model.Account;
 import com.dbbl.payment.model.Customer;
 import com.dbbl.payment.service.AccountNumberNotFoundException;
 import com.dbbl.payment.service.AccountService;
+import com.dbbl.payment.service.OperationOnDeletedCustomerException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
@@ -65,6 +66,9 @@ public class AccountController {
         try {
             Account account = accountService.deactivateOrActivateAccount(id);
         }catch (AccountNumberNotFoundException e){
+            redirectAttributes.addAttribute("messageType", MessageType.ERROR);
+            redirectAttributes.addAttribute("message", e.getLocalizedMessage());
+        }catch(OperationOnDeletedCustomerException e){
             redirectAttributes.addAttribute("messageType", MessageType.ERROR);
             redirectAttributes.addAttribute("message", e.getLocalizedMessage());
         }

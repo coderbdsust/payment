@@ -17,7 +17,8 @@ public class Customer {
     private Long id;
     private Boolean active;
     private Long branchId;
-    private Boolean locked;
+    private Boolean locked=false;
+    private Boolean deleted=false;
     private Long createdBy;
     @Temporal(value = TemporalType.DATE)
     private Date createdDate;
@@ -31,6 +32,9 @@ public class Customer {
     @OneToMany(mappedBy = "customerId", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JsonIgnore
     private Set<BeneficiarAccount> beneficiarAccounts;
+    @OneToMany(mappedBy = "customerId", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JsonIgnore
+    private Set<Account> accounts;
 
     public Long getId() {
         return id;
@@ -110,6 +114,22 @@ public class Customer {
 
     public void setBeneficiarAccounts(Set<BeneficiarAccount> beneficiarAccounts) {
         this.beneficiarAccounts = beneficiarAccounts;
+    }
+
+    public Set<Account> getAccounts() {
+        return accounts;
+    }
+
+    public void setAccounts(Set<Account> accounts) {
+        this.accounts = accounts;
+    }
+
+    public Boolean getDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(Boolean deleted) {
+        this.deleted = deleted;
     }
 
     @Override

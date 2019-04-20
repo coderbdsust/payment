@@ -1,0 +1,115 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+    <title>
+        Tables
+    </title>
+    <th:block th:replace="common/header :: header"></th:block>
+</head>
+
+<body class="">
+<div class="wrapper ">
+    <div class="sidebar" data-color="purple" data-background-color="white" data-image="../assets/img/sidebar-1.jpg">
+        <th:block th:replace="common/sidebar :: sidebar"></th:block>
+    </div>
+    <div class="main-panel">
+        <th:block th:replace="common/navbar :: navbar"></th:block>
+        <div class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <th:block th:replace="common/alert :: alert-block"></th:block>
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header card-header-primary">
+                                <div class="row">
+                                    <div class="col-md-7">
+                                        <h4 class="card-title ">Customer</h4>
+                                        <p class="card-category">customer details information</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table" id="table">
+                                        <thead class=" text-primary">
+                                        <th>
+                                            Customer ID
+                                        </th>
+                                        <th>
+                                            Customer Name
+                                        </th>
+                                        <th>
+                                            National ID
+                                        </th>
+                                        <th>
+                                            Creation Date
+                                        </th>
+                                        <th>
+                                            Total Accounts
+                                        </th>
+                                        <th>
+                                            Customer Locked
+                                        </th>
+                                        <th>
+                                            Customer Deleted Or Closed
+                                        </th>
+                                        <th>
+                                            Delete
+                                        </th>
+                                        </thead>
+                                        <tbody>
+                                        <tr th:each="customer:${customers}">
+                                            <td th:text="${customer.getId()}">
+                                                101102500
+                                            </td>
+                                            <td th:text="${customer?.profileId?.firstName+' '+customer?.profileId?.lastName}">
+                                                Biswajit Debnath
+                                            </td>
+                                            <td th:text="${customer.profileId.nationalId}">
+                                                23542323
+                                            </td>
+                                            <td th:text="${customer.createdDate}">
+                                                April 14, 2019
+                                            </td>
+                                            <td th:text="${customer.accounts.size()}">
+                                                1
+                                            </td>
+                                            <td th:classappend="${(customer.locked==false) ? 'text-success' : 'text-danger'}"
+                                                th:text="${customer.locked==true?'Locked':'Not Locked'}">
+                                                Active
+                                            </td>
+                                            <td th:classappend="${(customer.deleted==false) ? 'text-success' : 'text-danger'}"
+                                                th:text="${customer.deleted==true?'Deleted':'Active'}">
+                                                Active
+                                            </td>
+                                            <td>
+                                                <a th:if="${customer.deleted==false}"
+                                                   class="btn btn-primary btn-sm pull-center"
+                                                   th:href="@{'/customer/delete/'+${customer.id}}">Delete</a>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <th:block th:replace="common/footer :: footer"></th:block>
+    </div>
+</div>
+<th:block th:replace="common/footer-plugins :: footer-plugins"></th:block>
+<th:block th:replace="common/footer-lib :: footerlib"></th:block>
+<script>
+    $(document).ready(function () {
+        $('#table').DataTable();
+    });
+</script>
+</body>
+
+</html>

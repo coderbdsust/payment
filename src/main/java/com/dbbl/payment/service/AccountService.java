@@ -14,8 +14,6 @@ import com.dbbl.payment.repository.CustomerRepository;
 import com.dbbl.payment.repository.ProfileRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import javax.security.auth.login.AccountNotFoundException;
 import javax.transaction.Transactional;
 import java.util.Date;
 import java.util.List;
@@ -91,9 +89,13 @@ public class AccountService implements IAccountService {
     }
 
     @Override
-    public Account deactivateOrActivateAccount(Long id) throws AccountNumberNotFoundException {
+    public Account deactivateOrActivateAccount(Long id) throws AccountNumberNotFoundException, OperationOnDeletedCustomerException {
         Optional<Account> optionalAccount = accountRepository.findById(id);
+
         if (optionalAccount.isPresent()) {
+            if(optionalAccount.get().getCustomerId().getDeleted()){
+                throw new OperationOnDeletedCustomerException("Operation not possible for deleted customer");
+            }
             Account account = optionalAccount.get();
             account.setEnabled(!account.isEnabled());
             return accountRepository.save(account);
