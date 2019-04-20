@@ -1,49 +1,50 @@
-<div th:fragment="alert-block" class="col-md-12">
-    <div class="alert alert-success" th:if="${messageType != null and (messageType == 'SUCCESS')}">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <i class="material-icons">close</i>
-        </button>
-        <span>
-                  <b> Success - </b> <th:block th:text="${message}"> This is a regular notification made with ".alert-success" </th:block>
-            </span>
-    </div>
+<div th:fragment="alert-block" class="col-md-12" id="alertshowblock">
 
-    <div class="alert alert-danger"
-         th:if="${messageType != null and (messageType == 'ERROR')}">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <i class="material-icons">close</i>
-        </button>
-        <span>
-                      <b> Error - </b> <th:block th:text="${message}"> This is a regular notification made with ".alert-success" </th:block>
-            </span>
-    </div>
+    <!--<div class="alert alert-success" th:if="${messageType != null and (messageType == 'SUCCESS')}">-->
+        <!--<button type="button" class="close" data-dismiss="alert" aria-label="Close">-->
+            <!--<i class="material-icons">close</i>-->
+        <!--</button>-->
+        <!--<span>-->
+                  <!--<b> Success - </b> <th:block th:text="${message}"> This is a regular notification made with ".alert-success" </th:block>-->
+        <!--</span>-->
+    <!--</div>-->
 
-    <div class="alert alert-info"
-         th:if="${messageType != null and (messageType == 'INFO')}">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <i class="material-icons">close</i>
-        </button>
-        <span>
-                      <b> Info - </b> <th:block th:text="${message}"> This is a regular notification made with ".alert-success" </th:block></span>
-    </div>
-    <div class="alert alert-warning"
-         th:if="${messageType != null and (messageType == 'WARNING')}">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <i class="material-icons">close</i>
-        </button>
-        <span>
-                      <b> Warning - </b> <th:block th:text="${message}"> This is a regular notification made with ".alert-success" </th:block></span>
-    </div>
+    <!--<div class="alert alert-danger"-->
+         <!--th:if="${messageType != null and (messageType == 'ERROR')}">-->
+        <!--<button type="button" class="close" data-dismiss="alert" aria-label="Close">-->
+            <!--<i class="material-icons">close</i>-->
+        <!--</button>-->
+        <!--<span>-->
+                      <!--<b> Error - </b> <th:block th:text="${message}"> This is a regular notification made with ".alert-success" </th:block>-->
+            <!--</span>-->
+    <!--</div>-->
 
-    <div class="alert alert-primary"
-         th:if="${messageType != null and (messageType == 'PRIMARY')}">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <i class="material-icons">close</i>
-        </button>
-        <span>
-                      <b> Primary - </b> <th:block th:text="${message}"> This is a regular notification made with ".alert-success" </th:block>
-            </span>
-    </div>
+    <!--<div class="alert alert-info"-->
+         <!--th:if="${messageType != null and (messageType == 'INFO')}">-->
+        <!--<button type="button" class="close" data-dismiss="alert" aria-label="Close">-->
+            <!--<i class="material-icons">close</i>-->
+        <!--</button>-->
+        <!--<span>-->
+                      <!--<b> Info - </b> <th:block th:text="${message}"> This is a regular notification made with ".alert-success" </th:block></span>-->
+    <!--</div>-->
+    <!--<div class="alert alert-warning"-->
+         <!--th:if="${messageType != null and (messageType == 'WARNING')}">-->
+        <!--<button type="button" class="close" data-dismiss="alert" aria-label="Close">-->
+            <!--<i class="material-icons">close</i>-->
+        <!--</button>-->
+        <!--<span>-->
+                      <!--<b> Warning - </b> <th:block th:text="${message}"> This is a regular notification made with ".alert-success" </th:block></span>-->
+    <!--</div>-->
+
+    <!--<div class="alert alert-primary"-->
+         <!--th:if="${messageType != null and (messageType == 'PRIMARY')}">-->
+        <!--<button type="button" class="close" data-dismiss="alert" aria-label="Close">-->
+            <!--<i class="material-icons">close</i>-->
+        <!--</button>-->
+        <!--<span>-->
+                      <!--<b> Primary - </b> <th:block th:text="${message}"> This is a regular notification made with ".alert-success" </th:block>-->
+            <!--</span>-->
+    <!--</div>-->
 </div>
 
 

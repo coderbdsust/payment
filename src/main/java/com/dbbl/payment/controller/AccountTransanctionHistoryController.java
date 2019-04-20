@@ -31,13 +31,15 @@ public class AccountTransanctionHistoryController {
     AccountTransanctionService accountTransanctionService;
 
     @GetMapping("/account/transanction/history/{accountId}")
-    public String transanctionHistory(@PathVariable Long accountId, Model model){
+    public String transanctionHistory(@PathVariable Long accountId, Model model, RedirectAttributes redirectAttributes){
         try {
             List<AccountTransanctionHistory> transanctionHistoryList = accountTransanctionService.findAllByAccountId(accountId);
             model.addAttribute("accountTransanctionHistories", transanctionHistoryList);
 
         }catch (AccountNumberNotFoundException e){
-                return "redirect:/account";
+            redirectAttributes.addAttribute("messageType", MessageType.WARNING);
+            redirectAttributes.addAttribute("message",e.getLocalizedMessage());
+            return "redirect:/account";
         }
         return "account/account-transanction-history";
     }
@@ -58,6 +60,7 @@ public class AccountTransanctionHistoryController {
             model.addAttribute("account", account);
             model.addAttribute("transanctionDto", dto);
         }catch(AccountNumberNotFoundException e){
+            redirectAttributes.addAttribute("messageType", MessageType.WARNING);
             redirectAttributes.addAttribute("message",e.getLocalizedMessage());
             return "redirect:/account/transanction/deposit/open";
         }
@@ -70,6 +73,7 @@ public class AccountTransanctionHistoryController {
         try{
             AccountTransanctionHistory  accountTransanctionHistory = accountTransanctionService.doDepositedTransanction(dto);
         }catch (AccountNumberNotFoundException e){
+            redirectAttributes.addAttribute("messageType", MessageType.WARNING);
             redirectAttributes.addAttribute("message",e.getLocalizedMessage());
             return "redirect:/account/transanction/deposit/open";
         }
