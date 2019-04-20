@@ -7,20 +7,6 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Date;
 
-/*
-CREATE TABLE account_transanction_history (
-                id NUMBER NOT NULL,
-                credit_amount NUMBER NOT NULL,
-                transanction_date TIMESTAMP NOT NULL,
-                transanction_type VARCHAR2(30) NOT NULL,
-                from_account VARCHAR2 NOT NULL,
-                to_account VARCHAR2 NOT NULL,
-                reference VARCHAR2(200) NOT NULL,
-                debit_amount NUMBER NOT NULL,
-                account_id NUMBER NOT NULL,
-                CONSTRAINT ACCOUNT_TRANSANCTION_HISTOR881 PRIMARY KEY (id)
-);
- */
 @Entity
 public class AccountTransanctionHistory {
     @Id

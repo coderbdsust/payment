@@ -9,24 +9,6 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.Set;
 
-/*
-CREATE TABLE account (
-                id NUMBER NOT NULL,
-                balance NUMBER NOT NULL,
-                branch_id NUMBER NOT NULL,
-                customer_id NUMBER NOT NULL,
-                enabled RAW NOT NULL,
-                account_type VARCHAR2(30) NOT NULL,
-                created_by NUMBER NOT NULL,
-                updated_by NUMBER NOT NULL,
-                updated_date TIMESTAMP NOT NULL,
-                created_date TIMESTAMP NOT NULL,
-                bank_product_id_fk NUMBER NOT NULL,
-                CONSTRAINT ACCOUNT_PK PRIMARY KEY (id)
-);
-
- */
-
 @Entity
 public class Account {
     @Id

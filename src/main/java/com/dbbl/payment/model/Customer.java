@@ -8,20 +8,6 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.Set;
 
-/*
-CREATE TABLE customer (
-                id NUMBER NOT NULL,
-                active RAW NOT NULL,
-                branch_id NUMBER NOT NULL,
-                locked NUMBER NOT NULL,
-                created_by NUMBER NOT NULL,
-                created_date TIMESTAMP NOT NULL,
-                updated_by NUMBER NOT NULL,
-                updated_date TIMESTAMP NOT NULL,
-                profile_id_fk NUMBER NOT NULL,
-                CONSTRAINT CUSTOMER_PK PRIMARY KEY (id)
-);
- */
 
 @Entity
 public class Customer {

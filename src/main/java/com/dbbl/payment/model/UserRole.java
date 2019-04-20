@@ -6,14 +6,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.Objects;
-/*
-CREATE TABLE user_role (
-                id NUMBER NOT NULL,
-                role_name VARCHAR2(30) NOT NULL,
-                user_id NUMBER NOT NULL,
-                CONSTRAINT USER_ROLE_PK PRIMARY KEY (id)
-);
- */
 
 @Entity
 public class UserRole {

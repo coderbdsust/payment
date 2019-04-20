@@ -8,19 +8,6 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-/*
-CREATE TABLE user_account (
-                id NUMBER NOT NULL,
-                email VARCHAR2(100) NOT NULL,
-                password VARCHAR2(128) NOT NULL,
-                enabled NUMBER NOT NULL,
-                deleted NUMBER NOT NULL,
-                profile_id NUMBER NOT NULL,
-                locked NUMBER NOT NULL,
-                CONSTRAINT USER_ACCOUNT_PK PRIMARY KEY (id)
-);
-*/
-
 @Entity
 public class UserAccount {
     @Id
