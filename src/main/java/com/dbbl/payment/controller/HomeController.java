@@ -11,34 +11,4 @@ public class HomeController {
     private String home() {
         return "home";
     }
-
-    @RequestMapping(value = {"/icons"}, method = RequestMethod.GET)
-    private String icons() {
-        return "icons";
-    }
-
-    @RequestMapping(value = {"/map"}, method = RequestMethod.GET)
-    private String map() {
-        return "map";
-    }
-
-    @RequestMapping(value = {"/notifications"}, method = RequestMethod.GET)
-    private String notifications() {
-        return "notifications";
-    }
-
-    @RequestMapping(value = {"/tables"}, method = RequestMethod.GET)
-    private String tables() {
-        return "tables";
-    }
-
-    @RequestMapping(value = {"/typography"}, method = RequestMethod.GET)
-    private String typograhpy() {
-        return "typography";
-    }
-
-    @RequestMapping(value = {"/user"}, method = RequestMethod.GET)
-    private String user() {
-        return "user";
-    }
 }
