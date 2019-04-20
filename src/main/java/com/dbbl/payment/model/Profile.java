@@ -1,6 +1,7 @@
 package com.dbbl.payment.model;
 
 import com.dbbl.payment.constants.ProfileType;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -45,6 +46,7 @@ public class Profile {
     private String lastName;
     @Temporal(value = TemporalType.DATE)
     @DateTimeFormat(pattern = "dd/MM/yyyy")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy", timezone = "BDT")
     private Date dateOfBirth;
     private String email;
     @Size(min = 4, max = 30, message = "Country is required")

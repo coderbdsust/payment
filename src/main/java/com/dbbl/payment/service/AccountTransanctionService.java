@@ -57,8 +57,8 @@ public class AccountTransanctionService implements IAccountTransanctionService{
     @Override
     @Transactional
     public AccountTransanctionHistory doSendMoneyTransanction(SendMoneyDto dto) throws AccountNumberNotFoundException, InSufficientBalanceException {
-        Optional<Account> fromAccountOpt = accountRepository.findById(dto.getFromAccount().getAccountId());
-        Optional<Account> toAccountOpt = accountRepository.findById(dto.getToAccount().getAccountId());
+        Optional<Account> fromAccountOpt = accountRepository.findByIdAndEnabled(dto.getFromAccount().getAccountId(), true);
+        Optional<Account> toAccountOpt = accountRepository.findByIdAndEnabled(dto.getToAccount().getAccountId(), true);
 
         if(fromAccountOpt.isPresent() && toAccountOpt.isPresent()){
 
@@ -95,6 +95,6 @@ public class AccountTransanctionService implements IAccountTransanctionService{
 
             return fromTnxHistory;
         }
-        throw new AccountNumberNotFoundException("Account number not found");
+        throw new AccountNumberNotFoundException("Account number not found or inactive");
     }
 }

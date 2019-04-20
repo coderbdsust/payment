@@ -61,7 +61,7 @@ public class AccountService implements IAccountService {
             Account account = customerDto.getAccount();
             createAccount(account, customer);
             return customer;
-        }else{
+        } else {
             Customer customer = customerRepository.findByProfileId(previousProfile);
             Account account = customerDto.getAccount();
             createAccount(account, customer);
@@ -74,19 +74,30 @@ public class AccountService implements IAccountService {
         return accountRepository.findAll();
     }
 
-    private Account createAccount(Account account, Customer customer){
+    private Account createAccount(Account account, Customer customer) {
         account.setCustomerId(customer);
         account.setEnabled(true);
         return accountRepository.save(account);
     }
 
     @Override
-    public Account findAccountInformation(AccountTransanctionHistoryDto dto) throws AccountNumberNotFoundException{
+    public Account findAccountInformation(AccountTransanctionHistoryDto dto) throws AccountNumberNotFoundException {
         Optional<Account> account = accountRepository.findById(dto.getAccountId());
-        if(account.isPresent()){
+        if (account.isPresent()) {
             return account.get();
         }
 
         throw new AccountNumberNotFoundException("Account number doesn't exist");
+    }
+
+    @Override
+    public Account deactivateOrActivateAccount(Long id) throws AccountNumberNotFoundException {
+        Optional<Account> optionalAccount = accountRepository.findById(id);
+        if (optionalAccount.isPresent()) {
+            Account account = optionalAccount.get();
+            account.setEnabled(!account.isEnabled());
+            return accountRepository.save(account);
+        }
+        throw new AccountNumberNotFoundException("Account doesn't exist");
     }
 }

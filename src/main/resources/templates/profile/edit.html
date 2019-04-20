@@ -48,23 +48,21 @@
                       </div>
                       <div class="col-md-3">
                         <div class="form-group">
-                          <label class="bmd-label-floating">Date of Birth</label>
-                          <input type="text" th:field="*{profile.dateOfBirth}" class="form-control" >
-                          <span th:if="${#fields.hasErrors('profile.dateOfBirth')}"  class="text-danger">Date of birth is required</span>
-
-                        </div>
-                      </div>
-                      <div class="col-md-3">
-                        <div class="form-group">
                           <label class="bmd-label-floating">Contact</label>
                           <input type="text" th:field="*{profile.mobileNumber}" class="form-control" >
                           <span th:if="${#fields.hasErrors('profile.mobileNumber')}" th:errors="*{profile.mobileNumber}" class="text-danger">Mobile number is required</span>
-
+                        </div>
+                      </div>
+                      <div class="col-md-3">
+                        <label class="bmd-label-floating">Date of Birth</label>
+                        <div class="form-group">
+                          <input type="text" th:field="*{profile.dateOfBirth}" class="form-control" >
+                          <span th:if="${#fields.hasErrors('profile.dateOfBirth')}"  class="text-danger">Date of birth is required</span>
                         </div>
                       </div>
                     </div>
                     <div class="row">
-                      <div class="col-md-4">
+                      <div class="col-md-3">
                         <div class="form-group">
                           <label class="bmd-label-floating">Email</label>
                           <input type="text" th:field="*{profile.email}" class="form-control">
@@ -89,12 +87,15 @@
                         </div>
                       </div>
 
-                      <div class="col-md-2">
+                      <div class="col-md-3">
                         <div class="form-group">
-                          <label class="bmd-label-floating">Sex</label>
-                          <input type="text" th:field="*{profile.sex}" class="form-control">
-                          <span th:if="${#fields.hasErrors('profile.sex')}" th:errors="*{profile.sex}" class="text-danger">Sex is required</span>
-
+                          <label class="bmd-label-floating">Select Sex</label>
+                          <select class="form-control" th:field="*{profile.sex}" name="profile.sex" id="sex">
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Others">Others</option>
+                          </select>
+                          <span th:if="${#fields.hasErrors('profile.sex')}" th:errors="*{profile.sex}" class="text-danger">Gender is required</span>
                         </div>
                       </div>
                     </div>

@@ -10,4 +10,6 @@ public interface IAccountService {
     public Customer createAccount(CustomerDto customer);
     public List<Account> findAll();
     public Account findAccountInformation(AccountTransanctionHistoryDto dto) throws AccountNumberNotFoundException;
+
+    public Account deactivateOrActivateAccount(Long id) throws AccountNumberNotFoundException;
 }

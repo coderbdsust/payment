@@ -1,5 +1,6 @@
 package com.dbbl.payment.controller;
 
+import com.dbbl.payment.constants.MessageType;
 import com.dbbl.payment.dto.AccountTransanctionHistoryDto;
 import com.dbbl.payment.dto.SendMoneyDto;
 import com.dbbl.payment.model.Account;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import sun.plugin2.message.Message;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -87,11 +89,13 @@ public class AccountTransanctionHistoryController {
         try{
             Account fromAccount = accountService.findAccountInformation(dto.getFromAccount());
             Account toAccount = accountService.findAccountInformation(dto.getToAccount());
+            if(!fromAccount.isEnabled() || !toAccount.isEnabled()) throw  new AccountNumberNotFoundException("Account not enable for transanction");
             model.addAttribute("fromAccount", fromAccount);
             model.addAttribute("toAccount", toAccount);
             model.addAttribute("sendMoneyDto", dto);
         }catch(AccountNumberNotFoundException e){
-            redirectAttributes.addAttribute("message","Account number not found");
+            redirectAttributes.addAttribute("messageType", MessageType.ERROR);
+            redirectAttributes.addAttribute("message",e.getLocalizedMessage());
             return "redirect:/account/transanction/send-money/create";
         }
 
@@ -103,9 +107,11 @@ public class AccountTransanctionHistoryController {
         try{
             AccountTransanctionHistory  accountTransanctionHistory = accountTransanctionService.doSendMoneyTransanction(dto);
         }catch (AccountNumberNotFoundException e){
-            redirectAttributes.addAttribute("message","Account number not found");
+            redirectAttributes.addAttribute("messageType", MessageType.ERROR);
+            redirectAttributes.addAttribute("message",e.getLocalizedMessage());
             return "redirect:/account/transanction/send-money/create";
         }catch(InSufficientBalanceException ex){
+            redirectAttributes.addAttribute("messageType", MessageType.ERROR);
             redirectAttributes.addAttribute("message","Sender doesn't have enough balance for this transanction");
             return "redirect:/account/transanction/send-money/create";
         }
