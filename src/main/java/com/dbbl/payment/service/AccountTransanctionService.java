@@ -27,8 +27,7 @@ public class AccountTransanctionService implements IAccountTransanctionService{
     @Transactional
     public AccountTransanctionHistory doDepositedTransanction(AccountTransanctionHistoryDto dto) throws AccountNumberNotFoundException {
         Optional<Account> accountOptional = accountRepository.findById(dto.getAccountId());
-        if(accountOptional.isPresent()){
-
+        if(accountOptional.isPresent() && accountOptional.get().isEnabled()){
             Account account = accountOptional.get();
             AccountTransanctionHistory accTnxHistory = new AccountTransanctionHistory();
             accTnxHistory.setAccountId(account);
@@ -43,7 +42,7 @@ public class AccountTransanctionService implements IAccountTransanctionService{
              accountRepository.save(account);
              return accTnxHistory;
         }
-         throw new AccountNumberNotFoundException("Account number not found");
+         throw new AccountNumberNotFoundException("Account number not found or is disabled");
     }
 
     @Override

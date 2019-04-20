@@ -54,10 +54,11 @@ public class AccountTransanctionHistoryController {
         try{
             System.out.println(dto);
             Account account = accountService.findAccountInformation(dto);
+            if(!account.isEnabled()) throw new AccountNumberNotFoundException("Account is disabled");
             model.addAttribute("account", account);
             model.addAttribute("transanctionDto", dto);
         }catch(AccountNumberNotFoundException e){
-            redirectAttributes.addAttribute("message","Account number not found");
+            redirectAttributes.addAttribute("message",e.getLocalizedMessage());
             return "redirect:/account/transanction/deposit/open";
         }
 
@@ -69,7 +70,7 @@ public class AccountTransanctionHistoryController {
         try{
             AccountTransanctionHistory  accountTransanctionHistory = accountTransanctionService.doDepositedTransanction(dto);
         }catch (AccountNumberNotFoundException e){
-            redirectAttributes.addAttribute("message","Account number not found");
+            redirectAttributes.addAttribute("message",e.getLocalizedMessage());
             return "redirect:/account/transanction/deposit/open";
         }
         redirectAttributes.addAttribute("accountId", dto.getAccountId());
