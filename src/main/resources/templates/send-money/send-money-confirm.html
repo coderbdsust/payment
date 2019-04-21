@@ -35,17 +35,17 @@
                                             <div class="col-md-4">
                                                 <label class="bmd-label-floating">Branch Code</label>
                                                 <input type="text" th:field="*{fromAccount.branchId}"
-                                                       name="fromAccount.branchId" class="form-control">
+                                                       name="fromAccount.branchId" class="form-control" readonly>
                                             </div>
                                             <div class="col-md-4">
                                                 <label class="bmd-label-floating">Product Code</label>
                                                 <input type="text" th:field="*{fromAccount.bankProductId}"
-                                                       name="fromAccount.bankProductId" class="form-control">
+                                                       name="fromAccount.bankProductId" class="form-control" readonly>
                                             </div>
                                             <div class="col-md-4">
                                                 <label class="bmd-label-floating">From Account Number</label>
                                                 <input type="text" th:field="*{fromAccount.accountId}"
-                                                       name="fromAccount.accountId" class="form-control">
+                                                       name="fromAccount.accountId" class="form-control" readonly>
                                             </div>
                                         </div>
                                     </div>
@@ -54,17 +54,17 @@
                                             <div class="col-md-4">
                                                 <label class="bmd-label-floating">Branch Code</label>
                                                 <input type="text" th:field="*{toAccount.branchId}"
-                                                       name="toAccount.branchId" class="form-control">
+                                                       name="toAccount.branchId" class="form-control" readonly>
                                             </div>
                                             <div class="col-md-4">
                                                 <label class="bmd-label-floating">Product Code</label>
                                                 <input type="text" th:field="*{toAccount.bankProductId}"
-                                                       name="toAccount.bankProductId" class="form-control">
+                                                       name="toAccount.bankProductId" class="form-control" readonly>
                                             </div>
                                             <div class="col-md-4">
                                                 <label class="bmd-label-floating">To Account Number</label>
                                                 <input type="text" th:field="*{toAccount.accountId}"
-                                                       name="toAccount.accounId" class="form-control">
+                                                       name="toAccount.accounId" class="form-control" readonly>
                                             </div>
                                         </div>
                                     </div>
@@ -72,7 +72,7 @@
                                         <div class="form-group">
                                             <label class="bmd-label-floating">Amount</label>
                                             <input type="text" th:field="*{sendingAmount}" name="sendingAmount"
-                                                   class="form-control">
+                                                   class="form-control" readonly>
                                         </div>
                                     </div>
                                 </div>

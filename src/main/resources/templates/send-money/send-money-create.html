@@ -36,14 +36,23 @@
                                             <div class="col-md-4">
                                                 <label class="bmd-label-floating">Branch Code</label>
                                                 <input type="text" name="fromAccount.branchId" class="form-control">
+                                                <span th:if="${#fields.hasErrors('fromAccount.branchId')}" th:errors="*{fromAccount.branchId}"
+                                                      class="text-danger">Invalid branch code</span>
+
                                             </div>
                                             <div class="col-md-4">
                                                 <label class="bmd-label-floating">Product Code</label>
                                                 <input type="text" name="fromAccount.bankProductId" class="form-control">
+                                                <span th:if="${#fields.hasErrors('fromAccount.bankProductId')}" th:errors="*{fromAccount.bankProductId}"
+                                                      class="text-danger">Invalid product code</span>
+
                                             </div>
                                             <div class="col-md-4">
                                                 <label class="bmd-label-floating">From Account</label>
                                                 <input type="text" name="fromAccount.accountId" class="form-control">
+                                                <span th:if="${#fields.hasErrors('fromAccount.accountId')}" th:errors="*{fromAccount.accountId}"
+                                                      class="text-danger">Invalid account number</span>
+
                                             </div>
                                         </div>
                                     </div>
@@ -53,14 +62,23 @@
                                             <div class="col-md-4">
                                                 <label class="bmd-label-floating">Branch Code</label>
                                                 <input type="text" name="toAccount.branchId" class="form-control">
+                                                <span th:if="${#fields.hasErrors('toAccount.branchId')}" th:errors="*{toAccount.branchId}"
+                                                      class="text-danger">Invalid branch code</span>
+
                                             </div>
                                             <div class="col-md-4">
                                                 <label class="bmd-label-floating">Product Code</label>
                                                 <input type="text" name="toAccount.bankProductId" class="form-control">
+                                                <span th:if="${#fields.hasErrors('toAccount.bankProductId')}" th:errors="*{toAccount.bankProductId}"
+                                                      class="text-danger">Invalid bank product  code</span>
+
                                             </div>
                                             <div class="col-md-4">
                                                 <label class="bmd-label-floating">To Account </label>
                                                 <input type="text" name="toAccount.accountId" class="form-control">
+                                                <span th:if="${#fields.hasErrors('toAccount.accountId')}" th:errors="*{toAccount.accountId}"
+                                                      class="text-danger">Invalid account number</span>
+
                                             </div>
                                         </div>
                                     </div>
@@ -70,6 +88,9 @@
                                                 <div class="form-group">
                                                     <label class="bmd-label-floating">Amount</label>
                                                     <input type="text" name="sendingAmount" class="form-control">
+                                                    <span th:if="${#fields.hasErrors('sendingAmount')}" th:errors="*{sendingAmount}"
+                                                          class="text-danger">Invalid amount</span>
+
                                                 </div>
                                             </div>
                                         </div>

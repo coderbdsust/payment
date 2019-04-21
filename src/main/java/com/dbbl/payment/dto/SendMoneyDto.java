@@ -1,8 +1,15 @@
 package com.dbbl.payment.dto;
 
+import javax.validation.Valid;
+import javax.validation.constraints.*;
+
 public class SendMoneyDto {
+    @Valid
     private AccountTransanctionHistoryDto fromAccount;
+    @Valid
     private AccountTransanctionHistoryDto toAccount;
+    @Digits(integer = 14, fraction = 2, message = "Invalid amount")
+    @NotNull(message = "Invalid amount")
     private Float sendingAmount;
 
     public AccountTransanctionHistoryDto getFromAccount() {

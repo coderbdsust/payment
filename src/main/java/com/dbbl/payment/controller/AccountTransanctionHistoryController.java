@@ -12,6 +12,7 @@ import com.dbbl.payment.service.exception.InSufficientBalanceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -50,7 +51,10 @@ public class AccountTransanctionHistoryController {
     }
 
     @PostMapping("/account/transanction/deposit/details")
-    public String confirmDepositTransanction(AccountTransanctionHistoryDto dto, Model model, RedirectAttributes redirectAttributes){
+    public String confirmDepositTransanction(@Valid AccountTransanctionHistoryDto dto, BindingResult errors, Model model, RedirectAttributes redirectAttributes){
+        if(errors.hasErrors()){
+            return "deposit/deposit-create";
+        }
 
         try{
             System.out.println(dto);
@@ -88,7 +92,10 @@ public class AccountTransanctionHistoryController {
     }
 
     @PostMapping("/account/transanction/send-money/details")
-    public String confirmSendMoneyPage(@Valid SendMoneyDto dto, Model model, RedirectAttributes redirectAttributes){
+    public String confirmSendMoneyPage(@Valid SendMoneyDto dto, BindingResult errors, Model model, RedirectAttributes redirectAttributes){
+        if(errors.hasErrors()){
+            return "send-money/send-money-create";
+        }
 
         try{
             Account fromAccount = accountService.findAccountInformation(dto.getFromAccount());

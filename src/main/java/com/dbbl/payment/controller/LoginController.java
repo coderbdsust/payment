@@ -1,5 +1,6 @@
 package com.dbbl.payment.controller;
 
+import com.dbbl.payment.constants.MessageType;
 import com.dbbl.payment.dto.UserAccountDto;
 import com.dbbl.payment.model.UserAccount;
 import com.dbbl.payment.security.SystemUser;
@@ -11,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
 import java.security.Principal;
@@ -28,11 +30,17 @@ public class LoginController {
     }
 
     @PostMapping("/login")
-    public String doLogin(UserAccount loginUser, HttpSession session){
+    public String doLogin(UserAccount loginUser, HttpSession session, RedirectAttributes redirectAttributes){
         UsernamePasswordAuthenticationToken authentication =
                 (UsernamePasswordAuthenticationToken)
                         SecurityContextHolder.getContext().getAuthentication();
-        validatePrinciple(authentication.getPrincipal());
+        try{
+            validatePrinciple(authentication.getPrincipal());
+        }catch (Exception e){
+            redirectAttributes.addAttribute("messageType", MessageType.ERROR);
+            redirectAttributes.addAttribute("message", "Username or password is incorrect");
+        }
+
         SystemUser loggedInUser = ((SystemUser) authentication.getPrincipal()).getUserDetails();
         session.setAttribute("loginUserName", loggedInUser.getUsername());
         return "redirect:/";

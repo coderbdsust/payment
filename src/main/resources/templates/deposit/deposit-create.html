@@ -35,24 +35,35 @@
                         <div class="form-group">
                           <label class="bmd-label-floating">Branch Code</label>
                           <input type="text" name="branchId" class="form-control">
+                          <span th:if="${#fields.hasErrors('branchId')}" th:errors="*{branchId}"
+                                class="text-danger">Invalid amount</span>
+
                         </div>
                       </div>
                       <div class="col-md-2">
                         <div class="form-group">
                           <label class="bmd-label-floating">Bank Product</label>
                           <input type="text" name="bankProductId" class="form-control">
+                          <span th:if="${#fields.hasErrors('bankProductId')}" th:errors="*{bankProductId}"
+                                class="text-danger">Invalid amount</span>
+
                         </div>
                       </div>
                       <div class="col-md-3">
                         <div class="form-group">
                           <label class="bmd-label-floating">Account</label>
                           <input type="text" name="accountId" class="form-control">
+                          <span th:if="${#fields.hasErrors('accountId')}" th:errors="*{accountId}"
+                                class="text-danger">Invalid amount</span>
+
                         </div>
                       </div>
                       <div class="col-md-3">
                         <div class="form-group">
                           <label class="bmd-label-floating">Deposited Amount</label>
                           <input type="text" name="depositedAmount" class="form-control">
+                          <span th:if="${#fields.hasErrors('depositedAmount')}" th:errors="*{depositedAmount}"
+                                class="text-danger">Invalid amount</span>
                         </div>
                       </div>
                       <div class="col-md-2">

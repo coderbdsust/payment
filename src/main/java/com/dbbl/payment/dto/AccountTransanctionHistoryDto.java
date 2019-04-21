@@ -1,9 +1,16 @@
 package com.dbbl.payment.dto;
 
+import javax.validation.constraints.*;
+
 public class AccountTransanctionHistoryDto {
 
+    @Digits(integer = 3, fraction = 0, message = "Invalid branch code")
+    @NotNull(message = "Invalid branch code")
     private Long branchId;
+    @Digits(integer = 3, fraction = 0, message = "Invalid product code")
+    @NotNull(message = "Invalid product code")
     private Long bankProductId;
+    @NotNull(message = "Invalid account number")
     private Long accountId;
     private Float depositedAmount;
 

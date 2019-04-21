@@ -4,6 +4,7 @@ plugins {
 }
 
 apply plugin: 'io.spring.dependency-management'
+apply plugin: "war"
 
 group = 'com.dbbl'
 version = '0.0.1-SNAPSHOT'
@@ -45,6 +46,7 @@ dependencies {
 	compile group: 'com.oracle', name: 'ojdbc7', version: '12.1.0.2'
 // https://mvnrepository.com/artifact/org.thymeleaf.extras/thymeleaf-extras-springsecurity5
 	compile group: 'org.thymeleaf.extras', name: 'thymeleaf-extras-springsecurity5', version: '3.0.4.RELEASE'
+	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
 
 }
 

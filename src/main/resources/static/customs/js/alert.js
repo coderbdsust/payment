@@ -54,6 +54,11 @@ $( document ).ready(function() {
         '</div>';
     var messageType = $.getUrlVar('messageType');
     var message = $.getUrlVar('message');
+    var error = $.getUrlVar("error");
+    if(error){
+        message="Username or password is incorrect";
+        messageType="ERROR";
+    }
     if(messageType && message) {
         message=decodeURIComponent(message);
         message = message.replace(/\+/g, " ");
