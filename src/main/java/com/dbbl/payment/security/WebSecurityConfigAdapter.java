@@ -33,7 +33,7 @@ public class WebSecurityConfigAdapter extends WebSecurityConfigurerAdapter {
                  .formLogin()
                 .loginProcessingUrl("/login")
                 .loginPage("/login")
-                .failureUrl("/login?messageType=ERROR&message=Username%20or%20password%20is%20wrong").permitAll()
+                .failureUrl("/login?messageType=ERROR&message=Username%20or%20password%20is%20wrong&loginError=true").permitAll()
                  .and()
                 .logout().logoutUrl("/logout")
                 .logoutSuccessUrl("/login")

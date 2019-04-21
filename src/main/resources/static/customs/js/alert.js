@@ -15,7 +15,15 @@ $.extend({
     }
 });
 
-
+function buildErrorTextDiv(message, messageType){
+    var div = $("<div>");
+    var span = $("<span>");
+    div.addClass("text-center");
+    span.addClass("text-danger");
+    span.text(message);
+    div.append(span);
+    return div;
+}
 
 function buildToasterDiv(message, messageType){
     var div = $("<div>");
@@ -52,18 +60,24 @@ $( document ).ready(function() {
         '</button>' +
         '<span id="messageAlertDiv"></span>' +
         '</div>';
+    var alertShowBlock = $('#alertshowblock');
     var messageType = $.getUrlVar('messageType');
     var message = $.getUrlVar('message');
-    var error = $.getUrlVar("error");
-    if(error){
+    var loginError = $.getUrlVar("loginError");
+
+    if(loginError){
         message="Username or password is incorrect";
         messageType="ERROR";
+        var div  = buildErrorTextDiv(message, messageType);
+        alertShowBlock.append(div);
+        alertShowBlock.delay(5000).fadeOut();
+        return;
     }
+
     if(messageType && message) {
         message=decodeURIComponent(message);
         message = message.replace(/\+/g, " ");
         var div = buildToasterDiv(message, messageType);
-        var alertShowBlock = $('#alertshowblock');
         alertShowBlock.append(div);
         alertShowBlock.delay(5000).fadeOut();
     }
