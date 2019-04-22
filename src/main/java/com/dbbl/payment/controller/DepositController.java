@@ -28,13 +28,13 @@ public class DepositController {
     @GetMapping("/account/transanction/deposit/open")
     public String openDepositTransanction(Model model){
         model.addAttribute("accountTransanctionHistoryDto", new AccountTransanctionHistoryDto());
-        return "deposit/deposit-create";
+        return "pages/deposit/deposit-create";
     }
 
     @PostMapping("/account/transanction/deposit/details")
     public String confirmDepositTransanction(@Valid AccountTransanctionHistoryDto dto, BindingResult errors, Model model, RedirectAttributes redirectAttributes){
         if(errors.hasErrors()){
-            return "deposit/deposit-create";
+            return "pages/deposit/deposit-create";
         }
 
         try{
@@ -49,7 +49,7 @@ public class DepositController {
             return "redirect:/account/transanction/deposit/open";
         }
 
-        return "deposit/deposit-confirm";
+        return "pages/deposit/deposit-confirm";
     }
 
     @PostMapping("/account/transanction/deposit/confirm")

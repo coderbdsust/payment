@@ -29,18 +29,18 @@ public class UserAccountController {
     @GetMapping("/admin/user/create")
     public String showAdminUserPage(Model model) {
         model.addAttribute("userAccountDto", new UserAccountDto());
-        return "admin/admin-user-create";
+        return "pages/admin/admin-user-create";
     }
 
     @PostMapping("/admin/user/create")
     public String createAdminUser(@Valid UserAccountDto user, BindingResult bindingResult) {
         if(bindingResult.hasErrors()){
-            return "admin/admin-user-create";
+            return "pages/admin/admin-user-create";
         }
 
         if(!user.getPassword().equals(user.getConfirmPassword())){
             bindingResult.rejectValue("confirmPassword","field.password", "Password not matched!");
-            return "admin/admin-user-create";
+            return "pages/admin/admin-user-create";
         }
 
         UserAccount userAccount = userAccountService.createSystemUser(user);
@@ -51,7 +51,7 @@ public class UserAccountController {
     public String showAdminUser(Model model) {
         List<UserAccount> userAccountList = userAccountService.findAll();
         model.addAttribute("adminUsers", userAccountList);
-        return "admin/admin-user-list";
+        return "pages/admin/admin-user-list";
     }
 
     @GetMapping("/admin/user/delete/{id}")

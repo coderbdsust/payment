@@ -126,7 +126,9 @@
 <th:block th:replace="common/footer-lib :: footerlib"></th:block>
 <script>
     $(document).ready( function () {
-        $('#table').DataTable();
+        $('#table').DataTable({
+            "order": [ [ 0, "desc" ] ]
+        });
     } );
 </script>
 </body>

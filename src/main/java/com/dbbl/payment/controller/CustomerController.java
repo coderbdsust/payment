@@ -19,7 +19,7 @@ public class CustomerController {
     @GetMapping("/customer")
     public String showCustomer(Model model){
         model.addAttribute("customers", customerService.findAll());
-        return "customer/customer-list";
+        return "pages/customer/customer-list";
     }
 
     @GetMapping("/customer/delete/{customerId}")

@@ -40,7 +40,7 @@ public class AccountController {
     @GetMapping("/account/create")
     public String goCreateAccountPage(Model model) {
         model.addAttribute("customerDto", new CustomerDto());
-        return "account/account-create";
+        return "pages/account/account-create";
     }
 
     @PostMapping("/account/create")
@@ -57,7 +57,7 @@ public class AccountController {
     public String showAccounts(Model models) {
         List<Account> accountList = accountService.findAll();
         models.addAttribute("accounts", accountList);
-        return "account/account-list";
+        return "pages/account/account-list";
     }
 
     @GetMapping("/account/activeorinactive/{id}")

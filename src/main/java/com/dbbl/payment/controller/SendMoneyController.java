@@ -28,13 +28,13 @@ public class SendMoneyController {
     @GetMapping("/account/transanction/send-money/create")
     public String createSendMoneyPage(Model model){
         model.addAttribute("sendMoneyDto", new SendMoneyDto());
-        return "send-money/send-money-create";
+        return "pages/send-money/send-money-create";
     }
 
     @PostMapping("/account/transanction/send-money/details")
     public String confirmSendMoneyPage(@Valid SendMoneyDto dto, BindingResult errors, Model model, RedirectAttributes redirectAttributes){
         if(errors.hasErrors()){
-            return "send-money/send-money-create";
+            return "pages/send-money/send-money-create";
         }
 
         try{
@@ -50,7 +50,7 @@ public class SendMoneyController {
             return "redirect:/account/transanction/send-money/create";
         }
 
-        return "send-money/send-money-confirm";
+        return "pages/send-money/send-money-confirm";
     }
 
     @PostMapping("/account/transanction/send-money/confirm")

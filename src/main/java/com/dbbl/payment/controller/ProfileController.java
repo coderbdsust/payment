@@ -34,7 +34,7 @@ public class ProfileController {
         String username = principal.getName();
         ProfileViewDto profileViewDto = profileService.getUserAccountProfile(username);
         model.addAttribute("profileViewDto", profileViewDto);
-        return "profile/profile";
+        return "pages/profile/profile";
     }
 
     @GetMapping("/profile/edit")
@@ -42,13 +42,13 @@ public class ProfileController {
         String username = principal.getName();
         ProfileViewDto profileViewDto = profileService.getUserAccountProfile(username);
         model.addAttribute("profileViewDto", profileViewDto);
-        return "profile/edit";
+        return "pages/profile/edit";
     }
 
     @PostMapping("/profile")
     public String saveProfile(@Valid ProfileViewDto profileViewDto, BindingResult errors){
         if(errors.hasErrors()){
-            return "profile/edit";
+            return "pages/profile/edit";
         }
         Profile profileRes = profileService.saveOrUpdateUserAccountProfile(profileViewDto);
         return "redirect:/profile";

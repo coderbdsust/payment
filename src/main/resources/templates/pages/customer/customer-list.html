@@ -50,11 +50,9 @@
                                         <th>
                                             Total Accounts
                                         </th>
+
                                         <th>
-                                            Customer Locked
-                                        </th>
-                                        <th>
-                                            Customer Deleted Or Closed
+                                            Customer Status
                                         </th>
                                         <th>
                                             Delete
@@ -76,10 +74,6 @@
                                             </td>
                                             <td th:text="${customer.accounts.size()}">
                                                 1
-                                            </td>
-                                            <td th:classappend="${(customer.locked==false) ? 'text-success' : 'text-danger'}"
-                                                th:text="${customer.locked==true?'Locked':'Not Locked'}">
-                                                Active
                                             </td>
                                             <td th:classappend="${(customer.deleted==false) ? 'text-success' : 'text-danger'}"
                                                 th:text="${customer.deleted==true?'Deleted':'Active'}">

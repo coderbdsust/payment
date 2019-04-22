@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 @Controller
@@ -34,6 +36,7 @@ public class AccountTransanctionHistoryController {
     public String transanctionHistory(@PathVariable Long accountId, Model model, RedirectAttributes redirectAttributes){
         try {
             List<AccountTransanctionHistory> transanctionHistoryList = accountTransanctionService.findAllByAccountId(accountId);
+
             model.addAttribute("accountTransanctionHistories", transanctionHistoryList);
 
         }catch (AccountNumberNotFoundException e){
@@ -41,7 +44,7 @@ public class AccountTransanctionHistoryController {
             redirectAttributes.addAttribute("message",e.getLocalizedMessage());
             return "redirect:/account";
         }
-        return "account/account-transanction-history";
+        return "pages/account/account-transanction-history";
     }
 
 }

@@ -6,7 +6,6 @@ import com.dbbl.payment.model.UserAccount;
 import com.dbbl.payment.security.SystemUser;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.web.method.annotation.AuthenticationPrincipalArgumentResolver;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,7 +25,7 @@ public class LoginController {
             return "redirect:/";
         }
         model.addAttribute("loginUser", new UserAccountDto());
-        return "login";
+        return "pages/login";
     }
 
     @PostMapping("/login")
