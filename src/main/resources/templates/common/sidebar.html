@@ -1,4 +1,4 @@
-<div th:fragment="sidebar">
+<div th:fragment="sidebar" id="sidebar">
     <div class="logo">
         <a th:href="@{/}" class="simple-text logo-normal">
             CBD Payment
@@ -6,32 +6,36 @@
     </div>
     <div class="sidebar-wrapper">
         <ul class="nav">
-            <li class="nav-item  ">
+            <li class="nav-item">
                 <a class="nav-link" th:href="@{/}">
                     <i class="material-icons">dashboard</i>
                     <p>Home</p>
                 </a>
             </li>
-            <li class="nav-item  ">
-                <a class="nav-link" th:href="@{/account}">
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/account}"
+                   >
                     <i class="material-icons">account_circle</i>
                     <p>Account</p>
                 </a>
             </li>
             <li class="nav-item  ">
-                <a class="nav-link" th:href="@{/account/transanction/deposit/open}">
+                <a class="nav-link" th:href="@{/account/transanction/deposit/open}"
+                  >
                     <i class="material-icons">plus_one</i>
                     <p>Deposit</p>
                 </a>
             </li>
             <li class="nav-item  ">
-                <a class="nav-link" th:href="@{/account/transanction/send-money/create}">
+                <a class="nav-link" th:href="@{/account/transanction/send-money/create}"
+                   >
                     <i class="material-icons">redo</i>
                     <p>Send Money</p>
                 </a>
             </li>
 
-            <li class="nav-item" sec:authorize="hasAuthority('ADMIN')">
+            <li class="nav-item" sec:authorize="hasAuthority('ADMIN')"
+                >
                 <a class="nav-link" th:href="@{/customer}">
                     <i class="material-icons">account_circle</i>
                     <p>Customer</p>
