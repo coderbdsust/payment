@@ -18,9 +18,11 @@ $.extend({
 function buildErrorTextDiv(message, messageType){
     var div = $("<div>");
     var span = $("<span>");
+    var strong = $("<strong>");
     div.addClass("text-center");
     span.addClass("text-danger");
-    span.text(message);
+    strong.text(message);
+    span.append(strong);
     div.append(span);
     return div;
 }
