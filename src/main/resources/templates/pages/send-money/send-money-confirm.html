@@ -28,7 +28,7 @@
                         </div>
                         <div class="card-body">
                             <form th:action="@{/account/transanction/send-money/confirm}" method="post"
-                                  th:object="${sendMoneyDto}">
+                                  th:object="${sendMoneyDto}" id="sendMoneyForm">
                                 <div class="row">
                                     <div class="col-md-5">
                                         <div class="row">
@@ -192,7 +192,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <button type="submit" class="btn btn-primary pull-right">Send Money</button>
+                                <button type="submit" class="btn btn-primary pull-right" id="sendMoneyBtn">Send Money</button>
                                 <a class="btn btn-danger pull-right" th:href="@{/}">Cancel</a>
                                 <div class="clearfix"></div>
                             </form>
@@ -209,6 +209,8 @@
 </div>
 <th:block th:replace="common/footer-plugins :: footer-plugins"></th:block>
 <th:block th:replace="common/footer-lib :: footerlib"></th:block>
+<script type="text/javascript" charset="utf8" th:src="@{/customs/js/send-money-transanction.js}"></script>
+
 </body>
 
 </html>

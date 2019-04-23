@@ -55,13 +55,14 @@ function buildToasterDiv(message, messageType){
     return div;
 }
 
+function showToaster(message, messageType){
+    var alertShowBlock = $('#alertshowblock');
+    var div = buildToasterDiv(message, messageType);
+    alertShowBlock.append(div);
+    alertShowBlock.delay(5000).fadeOut();
+}
+
 $( document ).ready(function() {
-    var alertDiv = '<div class="alert">' +
-        '<button type="button" class="close" data-dismiss="alert" aria-label="Close">' +
-        '<i class="material-icons">close</i>' +
-        '</button>' +
-        '<span id="messageAlertDiv"></span>' +
-        '</div>';
     var alertShowBlock = $('#alertshowblock');
     var messageType = $.getUrlVar('messageType');
     var message = $.getUrlVar('message');
@@ -84,3 +85,5 @@ $( document ).ready(function() {
         alertShowBlock.delay(5000).fadeOut();
     }
 });
+
+

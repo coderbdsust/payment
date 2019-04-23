@@ -7,6 +7,7 @@ import com.dbbl.payment.service.AccountService;
 import com.dbbl.payment.service.AccountTransanctionService;
 import com.dbbl.payment.service.exception.AccountNumberNotFoundException;
 import com.dbbl.payment.service.exception.InSufficientBalanceException;
+import com.dbbl.payment.service.exception.SelfAccountTransferException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,9 +29,7 @@ public class SendMoneyRestController {
         try {
             AccountTransanctionHistory accountTransanctionHistory = accountTransanctionService.doSendMoneyTransanction(dto);
             return ResponseEntity.ok().body(accountTransanctionHistory);
-        } catch (AccountNumberNotFoundException e) {
-            return ResponseEntity.status(HttpStatus.PRECONDITION_FAILED).body(e);
-        } catch (InSufficientBalanceException e) {
+        } catch (AccountNumberNotFoundException | InSufficientBalanceException | SelfAccountTransferException e) {
             return ResponseEntity.status(HttpStatus.PRECONDITION_FAILED).body(e);
         }
     }

@@ -7,7 +7,7 @@
     <title>
         User
     </title>
-    <link href="../../static/customs/css/login.css" th:href="@{/customs/css/login.css}" rel="stylesheet" />
+    <link href="../../static/customs/css/login.css" th:href="@{/customs/css/login.css}" rel="stylesheet"/>
     <th:block th:replace="common/header :: header"></th:block>
 </head>
 
@@ -25,18 +25,14 @@
                         <form th:action="@{/login}" method="post" th:object="${userAccountDto}">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label class="bmd-label-floating">Username or Email</label>
-                                        <input type="text" name="username" class="form-control">
-                                    </div>
+                                    <label class="bmd-label-floating">Username or Email</label>
+                                    <input type="text" name="username" class="form-control">
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label class="bmd-label-floating">Password</label>
-                                        <input type="password" name="password" class="form-control">
-                                    </div>
+                                    <label class="bmd-label-floating">Password</label>
+                                    <input type="password" name="password" class="form-control">
                                 </div>
                             </div>
 

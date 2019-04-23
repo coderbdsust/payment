@@ -8,6 +8,7 @@ import com.dbbl.payment.service.AccountService;
 import com.dbbl.payment.service.AccountTransanctionService;
 import com.dbbl.payment.service.exception.AccountNumberNotFoundException;
 import com.dbbl.payment.service.exception.InSufficientBalanceException;
+import com.dbbl.payment.service.exception.SelfAccountTransferException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -65,6 +66,9 @@ public class SendMoneyController {
             redirectAttributes.addAttribute("messageType", MessageType.ERROR);
             redirectAttributes.addAttribute("message","Sender doesn't have enough balance for this transanction");
             return "redirect:/account/transanction/send-money/create";
+        }catch(SelfAccountTransferException e){
+            redirectAttributes.addAttribute("messageType", MessageType.ERROR);
+            redirectAttributes.addAttribute("message","Self account money transanction not valid");
         }
         redirectAttributes.addAttribute("accountId", dto.getFromAccount().getAccountId());
         return "redirect:/account/transanction/history/{accountId}";

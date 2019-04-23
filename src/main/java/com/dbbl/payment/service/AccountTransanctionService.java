@@ -8,6 +8,7 @@ import com.dbbl.payment.repository.AccountRepository;
 import com.dbbl.payment.repository.AccountTransanctionHistoryRepository;
 import com.dbbl.payment.service.exception.AccountNumberNotFoundException;
 import com.dbbl.payment.service.exception.InSufficientBalanceException;
+import com.dbbl.payment.service.exception.SelfAccountTransferException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -56,7 +57,7 @@ public class AccountTransanctionService implements IAccountTransanctionService{
 
     @Override
     @Transactional
-    public AccountTransanctionHistory doSendMoneyTransanction(SendMoneyDto dto) throws AccountNumberNotFoundException, InSufficientBalanceException {
+    public AccountTransanctionHistory doSendMoneyTransanction(SendMoneyDto dto) throws AccountNumberNotFoundException, InSufficientBalanceException, SelfAccountTransferException {
         Optional<Account> fromAccountOpt = accountRepository.findByIdAndEnabled(dto.getFromAccount().getAccountId(), true);
         Optional<Account> toAccountOpt = accountRepository.findByIdAndEnabled(dto.getToAccount().getAccountId(), true);
 
@@ -64,6 +65,9 @@ public class AccountTransanctionService implements IAccountTransanctionService{
 
             Account fromAccount = fromAccountOpt.get();
             Account toAccount = toAccountOpt.get();
+            if(fromAccount.getId() == toAccount.getId()){
+                throw new SelfAccountTransferException("Can't send money to same account");
+            }
 
             if(fromAccount.getBalance()-dto.getSendingAmount()<0){
                 throw new InSufficientBalanceException("Sender account doesn't have sufficient balance");
