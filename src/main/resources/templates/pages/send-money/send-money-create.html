@@ -85,13 +85,10 @@
                                     <div class="col-md-2">
                                         <div class="row">
                                             <div class="col-md-12">
-                                                <div class="form-group">
                                                     <label class="bmd-label-floating">Amount</label>
                                                     <input type="text" name="sendingAmount" class="form-control">
                                                     <span th:if="${#fields.hasErrors('sendingAmount')}" th:errors="*{sendingAmount}"
                                                           class="text-danger">Invalid amount</span>
-
-                                                </div>
                                             </div>
                                         </div>
                                     </div>
