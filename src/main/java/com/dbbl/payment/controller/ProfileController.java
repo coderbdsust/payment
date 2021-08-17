@@ -39,6 +39,7 @@ public class ProfileController {
 
     @GetMapping("/profile/edit")
     public String editProfile(Model model, Principal principal) {
+    	
         String username = principal.getName();
         ProfileViewDto profileViewDto = profileService.getUserAccountProfile(username);
         model.addAttribute("profileViewDto", profileViewDto);

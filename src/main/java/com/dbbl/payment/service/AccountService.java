@@ -43,11 +43,13 @@ public class AccountService implements IAccountService {
             presentAddress.setAddressType(AddressType.PRESENT);
             Address parmanentAddress = customerDto.getParmanentAddress();
             parmanentAddress.setAddressType(AddressType.PARMANENT);
-            Address officeAddress = customerDto.getOfficeAddress();
-            officeAddress.setAddressType(AddressType.OFFICIAL);
+            
+//            Address officeAddress = customerDto.getOfficeAddress();
+//            officeAddress.setAddressType(AddressType.OFFICIAL);
+            
             addressRepository.save(presentAddress);
             addressRepository.save(parmanentAddress);
-            addressRepository.save(officeAddress);
+//            addressRepository.save(officeAddress);
             Profile profile = customerDto.getProfile();
             profile.setCreatedDate(new Date());
             profile.setUpdatedDate(new Date());

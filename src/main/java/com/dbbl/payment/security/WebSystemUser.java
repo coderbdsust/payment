@@ -7,11 +7,16 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 import java.util.stream.Collectors;
 
-public class SystemUser implements UserDetails {
+public class WebSystemUser implements UserDetails {
 
-    private UserAccount user;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
+	private UserAccount user;
 
-    public SystemUser(UserAccount user) {
+    public WebSystemUser(UserAccount user) {
         this.user = user;
     }
 
@@ -55,13 +60,13 @@ public class SystemUser implements UserDetails {
         return user.getEnabled();
     }
 
-    public SystemUser getUserDetails(){
+    public WebSystemUser getUserDetails(){
         return this;
     }
 
     @Override
     public String toString() {
-        return "SystemUser{" +
+        return "WebSystemUser{" +
                 "user=" + user +
                 '}';
     }

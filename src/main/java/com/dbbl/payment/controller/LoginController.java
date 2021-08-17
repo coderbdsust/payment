@@ -3,7 +3,7 @@ package com.dbbl.payment.controller;
 import com.dbbl.payment.constants.MessageType;
 import com.dbbl.payment.dto.UserAccountDto;
 import com.dbbl.payment.model.UserAccount;
-import com.dbbl.payment.security.SystemUser;
+import com.dbbl.payment.security.WebSystemUser;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -40,7 +40,7 @@ public class LoginController {
             redirectAttributes.addAttribute("message", "Username or password is incorrect");
         }
 
-        SystemUser loggedInUser = ((SystemUser) authentication.getPrincipal()).getUserDetails();
+        WebSystemUser loggedInUser = ((WebSystemUser) authentication.getPrincipal()).getUserDetails();
         session.setAttribute("loginUserName", loggedInUser.getUsername());
         return "redirect:/";
     }
@@ -53,7 +53,7 @@ public class LoginController {
     }
 
     private void validatePrinciple(Object principal) {
-        if (!(principal instanceof SystemUser)) {
+        if (!(principal instanceof WebSystemUser)) {
             throw new  IllegalArgumentException("Principal can not be null!");
         }
     }

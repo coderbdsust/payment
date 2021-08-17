@@ -15,35 +15,36 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class Authenticator implements AuthenticationProvider {
-    private static final Logger log = LoggerFactory.getLogger(Authenticator.class);
+	private static final Logger log = LoggerFactory.getLogger(Authenticator.class);
 
-    @Autowired
-    UserAccountRepository userAccountRepository;
+	@Autowired
+	UserAccountRepository userAccountRepository;
 
-    @Override
-    public Authentication authenticate(Authentication authentication)
-            throws AuthenticationException {
-        String username = authentication.getName();
-        String password = authentication.getCredentials().toString();
-        UserAccount userAccount = userAccountRepository.getUserAccountByEmail(username);
+	@Override
+	public Authentication authenticate(Authentication authentication) throws AuthenticationException {
+		log.info("authenticate:/ ");
 
-        if (userAccount == null) {
-            throw new UsernameNotFoundException("Username is invalid");
-        }
+		String username = authentication.getName();
+		String password = authentication.getCredentials().toString();
+		UserAccount userAccount = userAccountRepository.getUserAccountByEmail(username);
 
-        if(!userAccount.getPassword().equals(password)){
-            throw new BadCredentialsException("Password is incorrect");
-        }
+		log.info("Retrieved user: " + userAccount);
 
-        SystemUser systemUser  = new SystemUser(userAccount);
+		if (userAccount == null) {
+			throw new UsernameNotFoundException("Username is invalid");
+		}
 
-        return new UsernamePasswordAuthenticationToken(
-                username, password, systemUser.getAuthorities());
-    }
+		if (!userAccount.getPassword().equals(password)) {
+			throw new BadCredentialsException("Password is incorrect");
+		}
 
-    @Override
-    public boolean supports(Class<?> authentication) {
-        return authentication.equals(
-                UsernamePasswordAuthenticationToken.class);
-    }
+		WebSystemUser systemUser = new WebSystemUser(userAccount);
+
+		return new UsernamePasswordAuthenticationToken(username, password, systemUser.getAuthorities());
+	}
+
+	@Override
+	public boolean supports(Class<?> authentication) {
+		return authentication.equals(UsernamePasswordAuthenticationToken.class);
+	}
 }

@@ -33,6 +33,8 @@ function buildToasterDiv(message, messageType){
     var it = $("<i>");
     var span = $("<span>");
     btn.addClass("close");
+    btn.prop("data-dismiss","alert");
+    btn.prop("aria-label","Close");
     it.addClass("material-icons");
     btn.append(it);
     span.text(message);
@@ -82,7 +84,7 @@ $( document ).ready(function() {
         message = message.replace(/\+/g, " ");
         var div = buildToasterDiv(message, messageType);
         alertShowBlock.append(div);
-        alertShowBlock.delay(5000).fadeOut();
+        // alertShowBlock.delay(5000).fadeOut();
     }
 });
 

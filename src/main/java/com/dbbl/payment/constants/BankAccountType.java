@@ -1,7 +1,7 @@
 package com.dbbl.payment.constants;
 
 public enum BankAccountType {
-    SAVING(101), CURRENT(102), POWER(103);
+    SAVING(101), CURRENT(102), POWER(103), BOND(100);
 
     private final int accountType;
 

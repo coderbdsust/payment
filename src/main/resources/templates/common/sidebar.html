@@ -1,7 +1,7 @@
 <div th:fragment="sidebar" id="sidebar">
     <div class="logo">
         <a th:href="@{/}" class="simple-text logo-normal">
-            CBD Payment
+            CBD Flexcube
         </a>
     </div>
     <div class="sidebar-wrapper">
@@ -12,11 +12,17 @@
                     <p>Home</p>
                 </a>
             </li>
+             <li class="nav-item">
+                <a class="nav-link" th:href="@{/account/create}">
+                    <i class="material-icons">account_circle</i>
+                    <p>Account Open</p>
+                </a>
+            </li>
             <li class="nav-item">
                 <a class="nav-link" th:href="@{/account}"
                    >
-                    <i class="material-icons">account_circle</i>
-                    <p>Account</p>
+                    <i class="material-icons">list</i>
+                    <p>Account List</p>
                 </a>
             </li>
             <li class="nav-item  ">
@@ -34,8 +40,7 @@
                 </a>
             </li>
 
-            <li class="nav-item" sec:authorize="hasAuthority('ADMIN')"
-                >
+            <li class="nav-item" sec:authorize="hasAuthority('ADMIN')">
                 <a class="nav-link" th:href="@{/customer}">
                     <i class="material-icons">account_circle</i>
                     <p>Customer</p>

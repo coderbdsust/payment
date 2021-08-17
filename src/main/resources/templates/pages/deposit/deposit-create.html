@@ -31,33 +31,37 @@
                 <div class="card-body">
                   <form th:action="@{/account/transanction/deposit/details}" th:object="${accountTransanctionHistoryDto}" method="post">
                     <div class="row">
-                      <div class="col-md-2">
-                        <div class="form-group">
-                          <label class="bmd-label-floating">Branch Code</label>
-                          <input type="text" name="branchId" class="form-control">
-                          <span th:if="${#fields.hasErrors('branchId')}" th:errors="*{branchId}"
-                                class="text-danger">Invalid amount</span>
-
-                        </div>
-                      </div>
-                      <div class="col-md-2">
-                        <div class="form-group">
-                          <label class="bmd-label-floating">Bank Product</label>
-                          <input type="text" name="bankProductId" class="form-control">
-                          <span th:if="${#fields.hasErrors('bankProductId')}" th:errors="*{bankProductId}"
-                                class="text-danger">Invalid amount</span>
-
-                        </div>
-                      </div>
+                   
                       <div class="col-md-3">
                         <div class="form-group">
                           <label class="bmd-label-floating">Account</label>
                           <input type="text" name="accountId" class="form-control">
                           <span th:if="${#fields.hasErrors('accountId')}" th:errors="*{accountId}"
-                                class="text-danger">Invalid amount</span>
+                                class="text-danger">Invalid Account</span>
 
                         </div>
                       </div>
+                      
+                      <div class="col-md-2">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">Branch Code</label>
+                          <input type="text" name="branchId" class="form-control">
+                          <span th:if="${#fields.hasErrors('branchId')}" th:errors="*{branchId}"
+                                class="text-danger">Invalid Branch Code</span>
+
+                        </div>
+                      </div>
+                      
+                      <div class="col-md-2">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">Bank Product</label>
+                          <input type="text" name="bankProductId" class="form-control">
+                          <span th:if="${#fields.hasErrors('bankProductId')}" th:errors="*{bankProductId}"
+                                class="text-danger">Invalid Product</span>
+
+                        </div>
+                      </div>
+                      
                       <div class="col-md-3">
                         <div class="form-group">
                           <label class="bmd-label-floating">Deposited Amount</label>
