@@ -30,7 +30,6 @@ public class Account {
 	@JoinColumn(name = "customer_id", referencedColumnName = "id")
 	@JsonIgnore
 	private Customer customerId;
-	private String accountNo;
 	private boolean enabled;
 	private Long accountType;
 	private Long createdBy;
