@@ -12,6 +12,7 @@ See deployment for notes on how to deploy the project on a live system.
 JDK 8
 Oracle SQL Database 11g or Higher
 Eclipse
+Gradle
 ```
 
 ## Deployment
@@ -68,10 +69,12 @@ log/cbdpayment.log
 
 
 ## Built With
-* JDK 8
-* Spring Boot 2.1.4.RELEASE
-* Oracle SQL 12c
-* Gradle
+
+* [JDK 8](https://www.oracle.com/de/java/technologies/javase/javase-jdk8-downloads.html "JDK 8 Homepage")
+* [Spring Boot 2.1.4.RELEASE](https://spring.io/ "Spring Framework Homepage")
+* [Oracle SQL 12c](https://docs.oracle.com/en/database/oracle/oracle-database/12.2/whats-new.html "Oracle 12c")
+* [Gradle](https://gradle.org/ "Gradle Homepage")
+* [SQL Power Architect](http://www.bestofbi.com/page/architect "SQL Power Architect Homepage")
 
 
 ## Versioning
@@ -80,7 +83,7 @@ We use @Git for versioning.
 
 ## Authors
 
-* **Biswajit Debnath** - *Initial work*
+* **Biswajit Debnath** - *Initial & Development work*
 
 ## License
 
