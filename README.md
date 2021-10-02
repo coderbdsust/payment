@@ -72,10 +72,10 @@ log/cbdpayment.log
 
 * [JDK 8](https://www.oracle.com/de/java/technologies/javase/javase-jdk8-downloads.html "JDK 8 Homepage")
 * [Spring Boot 2.1.4.RELEASE](https://spring.io/ "Spring Framework Homepage")
-* [Oracle SQL 12c](https://docs.oracle.com/en/database/oracle/oracle-database/12.2/whats-new.html "Oracle 12c")
+* [Oracle SQL 12c](https://docs.oracle.com/en/database/oracle/oracle-database/12.2/whats-new.html "Oracle 12c Website")
 * [Gradle](https://gradle.org/ "Gradle Homepage")
 * [ER Diagram - SQL Power Architect](http://www.bestofbi.com/page/architect "SQL Power Architect Homepage")
-* [Material Dashboard](https://www.creative-tim.com/product/material-dashboard "Material Dashboard Theme by Creative TIM Website")
+* [Material Dashboard](https://www.creative-tim.com/product/material-dashboard "Material Dashboard Theme - Creative TIM Website")
 
 
 ## Versioning
@@ -88,5 +88,5 @@ We use @Git for versioning.
 
 ## License
 
-This project is licensed under the @GPL-2.0
+This project is licensed under the [GPL-2.0](https://opensource.org/licenses/GPL-2.0 "GPL-2.0 License Desc")
 
