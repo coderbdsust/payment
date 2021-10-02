@@ -74,7 +74,8 @@ log/cbdpayment.log
 * [Spring Boot 2.1.4.RELEASE](https://spring.io/ "Spring Framework Homepage")
 * [Oracle SQL 12c](https://docs.oracle.com/en/database/oracle/oracle-database/12.2/whats-new.html "Oracle 12c")
 * [Gradle](https://gradle.org/ "Gradle Homepage")
-* [SQL Power Architect](http://www.bestofbi.com/page/architect "SQL Power Architect Homepage")
+* [ER Diagram - SQL Power Architect](http://www.bestofbi.com/page/architect "SQL Power Architect Homepage")
+* [Material Dashboard](https://www.creative-tim.com/product/material-dashboard "Material Dashboard Theme by Creative TIM Website")
 
 
 ## Versioning
@@ -87,5 +88,5 @@ We use @Git for versioning.
 
 ## License
 
-This project is licensed under the @CoderBD.
+This project is licensed under the @GPL-2.0
 
