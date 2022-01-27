@@ -9,17 +9,21 @@ See deployment for notes on how to deploy the project on a live system.
 
 ### Installing
 ```
-JDK 8
-Oracle SQL Database 11g or Higher
-Eclipse
-Gradle
+
+JDK 7
+MySQL Database
+Neatbeans
+Maven
+
 ```
 
-## Deployment
+## Product and Software Design
 
-### Configuration
+### UI Scratch
 
-* Resources configuration can be changed
+### ERD 
+
+
 
 ```
 src/main/resources/application.properties
@@ -35,37 +39,37 @@ log/cbdpayment.log
 
 * Login
 
-![Login Page](https://github.com/coderbdsust/payment/blob/master/feature-images/1.1-login%20page.png)
+![Login Page](/feature-images/1.1-login%20page.png)
 
 * Dashboard
 
-![Dashboard Page](https://github.com/coderbdsust/payment/blob/master/feature-images/2.1-dashboard-after-login.png)
+![Dashboard Page](/feature-images/2.1-dashboard-after-login.png)
 
 * Account Opening
 
-![Account Opening](https://github.com/coderbdsust/payment/blob/master/feature-images/3.1-account-opening.png)
+![Account Opening](/feature-images/3.1-account-opening.png)
 
 * Account Listing
 
-![Account Listing](https://github.com/coderbdsust/payment/blob/master/feature-images/4.1-account-listing.png)
+![Account Listing](/feature-images/4.1-account-listing.png)
 
 * Cash Deposit
 
-![Cash Deposit - Entry](https://github.com/coderbdsust/payment/blob/master/feature-images/5.1-cash-deposit-entry.png)
+![Cash Deposit - Entry](/feature-images/5.1-cash-deposit-entry.png)
 
-![Cash Deposit - Info Confirm](https://github.com/coderbdsust/payment/blob/master/feature-images/5.2-cash-deposit-info-confirm.png)
+![Cash Deposit - Info Confirm](/feature-images/5.2-cash-deposit-info-confirm.png)
 
 * Sending Money To Other Account
 
-![Send Money - Entry](https://github.com/coderbdsust/payment/blob/master/feature-images/6.1-send-monery-entry.png)
+![Send Money - Entry](/feature-images/6.1-send-monery-entry.png)
 
-![Send Money - Info Confirm](https://github.com/coderbdsust/payment/blob/master/feature-images/6.2-send-monery-info-confirm.png)
+![Send Money - Info Confirm](/feature-images/6.2-send-monery-info-confirm.png)
 
-![Send Monery - Txn Confirm](https://github.com/coderbdsust/payment/blob/master/feature-images/6.3-send-monery-txn-confirmation.png)
+![Send Monery - Txn Confirm](/feature-images/6.3-send-monery-txn-confirmation.png)
 
 * Account Transaction History
 
-![Account Transaction History](https://github.com/coderbdsust/payment/blob/master/feature-images/7.21-Transaction-log.png)
+![Account Transaction History](/feature-images/7.21-Transaction-log.png)
 
 
 ## Built With
